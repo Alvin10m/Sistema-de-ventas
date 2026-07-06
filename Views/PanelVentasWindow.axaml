@@ -10,6 +10,7 @@
         MinHeight="700"
         Background="#F4F6F9">
 
+
     <Grid>
         <Grid.ColumnDefinitions>
             <!-- Barra lateral -->
@@ -60,10 +61,15 @@
         <!-- Contenido principal -->
         <Grid Grid.Column="1" Margin="20">
             <Grid.RowDefinitions>
+                <!-- Encabezado -->
                 <RowDefinition Height="Auto"/>
+                <!--Información y búsqueda-->
                 <RowDefinition Height="Auto"/>
+                <!--Tabla-->
                 <RowDefinition Height="*"/>
+                <!-- Notas y resumen-->
                 <RowDefinition Height="Auto"/>
+                <!-- Botones-->
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -116,11 +122,11 @@
                     CornerRadius="12"
                     Padding="20">
 
-                <StackPanel Spacing="6">
+                <StackPanel Spacing="3">
 
                     <!-- Título -->
                     <TextBlock Text="Información de la venta"
-                               FontSize="15"
+                               FontSize="13"
                                FontWeight="SemiBold"
                                Foreground="#0D1E36"/>
 
@@ -134,18 +140,19 @@
                         <TextBlock Grid.Column="0"
                                    Text="Fecha:"
                                    FontWeight="SemiBold"
+                                   FontSize="12"
                                    Foreground="#0D1E36"
                                    VerticalAlignment="Center"/>
 
                         <TextBlock Grid.Column="1"
                                    Text="{Binding Fecha}"
-                                   FontSize="14"
+                                   FontSize="12"
                                    Foreground="#0D1E36"
                                    VerticalAlignment="Center"/>
 
                     </Grid>
 
-                    <!-- Hora -->
+                    <!-- Fila para la hora -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="120"/>
@@ -155,12 +162,13 @@
                         <TextBlock Grid.Column="0"
                                    Text="Hora:"
                                    FontWeight="SemiBold"
+                                   FontSize="12"
                                    Foreground="#0D1E36"
                                    VerticalAlignment="Center"/>
 
                         <TextBlock Grid.Column="1"
                                    Text="{Binding Hora}"
-                                   FontSize="14"
+                                   FontSize="12"
                                    Foreground="#0D1E36"
                                    VerticalAlignment="Center"/>
 
@@ -176,12 +184,13 @@
                         <TextBlock Grid.Column="0"
                                    Text="Vendedor:"
                                    FontWeight="SemiBold"
+                                   FontSize="12"
                                    Foreground="#0D1E36"
                                    VerticalAlignment="Center"/>
 
                         <TextBlock Grid.Column="1"
                                    Text="{Binding Vendedor}"
-                                   FontSize="14"
+                                   FontSize="12"
                                    Foreground="#0D1E36"
                                    VerticalAlignment="Center"/>
 
@@ -199,11 +208,11 @@
                     CornerRadius="12"
                     Padding="20">
 
-                <StackPanel Spacing="8">
+                <StackPanel Spacing="3">
                     
                     <!-- Título -->
                     <TextBlock Text="Buscar Producto"
-                               FontSize="16"
+                               FontSize="13"
                                FontWeight="SemiBold"
                                Foreground="#0D1E36"/>
 
@@ -215,7 +224,7 @@
                              BorderThickness="1"/>
 
                     <!-- Cantidad y botón -->
-                    <Grid ColumnSpacing="15">
+                    <Grid ColumnSpacing="13">
                         
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -234,6 +243,8 @@
                                        Minimum="1"
                                        Maximum="999"
                                        Value="1"
+                                       Increment="0.1"
+                                       FormatString="0.##"
                                        Background="White"
                                        Foreground="Black"/>
 
@@ -241,16 +252,83 @@
                         <Button Grid.Column="2"
                                 Content="Agregar"
                                 Background="#1A56DB"
-                                Foreground="White"/>
+                                Foreground="White"
+                                BorderBrush="#1A56DB"/>
 
                     </Grid>
 
                 </StackPanel>
-
+               
 
             </Border>
 
         </Grid>
+
+        <!-- Tabla de productos con scroll -->
+        <Border Grid.Row="12"
+                Background="White"
+                BorderBrush="#E5E7EB"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="20"
+                Margin="0,0,0,16">
+
+            <StackPanel Spacing="12">
+            
+                <!-- Título de la tabla -->
+                <TextBlock Text="Detalle de Productos"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           Foreground="#0D1e36"/>
+
+                <!-- Hacer ScrollViewer cuando hay muchos productos -->
+                <ScrollViewer Height="250">
+
+                    <!-- DataGrid: Mostrar la lista conectada al ViewModel -->
+                    <DataGrid ItemsSource="{Binding ProductosVenta}"
+                              AutoGenerateColumns="False"
+                              CanUserReorderColumns="False"
+                              CanUserResizeColumns="False"
+                              CanUserSortColumns="False"
+                              GridLinesVisibility="Horizontal"
+                              IsReadOnly="True"
+                              Background="White">
+
+                        <DataGrid.Columns>
+                            <!-- Número de fila -->
+                            <DataGridTextColumn Header="#"
+                                                Binding="{Binding Numero}"
+                                                Width="50"/>
+                            <!-- ID del producto -->
+                            <DataGridTextColumn Header="ID del producto"
+                                                Binding="{Binding IdProducto}"
+                                                Width="130"/>
+                            <!-- Nombre del producto -->
+                            <DataGridTextColumn Header="Producto"
+                                                Binding="{Binding Producto}"
+                                                Width="*"/>
+                            <!-- Cantidad -->
+                            <DataGridTextColumn Header="Cantidad"
+                                                Binding="{Binding Cantidad}"
+                                                Width="90"/>
+                            <!-- Precio unitario -->
+                            <DataGridTextColumn Header="Precio unit"
+                                                Binding="{Binding PrecioUnitario}"
+                                                Width="110"/>
+                            <!-- Subtotal -->
+                            <DataGridTextColumn Header="Subtotal"
+                                                Binding="{Binding Subtotal}"
+                                                Width="100"/>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
+        
+
+
 
 
     </Grid>

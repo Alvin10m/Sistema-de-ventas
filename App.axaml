@@ -3,7 +3,7 @@
              xmlns:material="using:Material.Icons.Avalonia"
              x:Class="SistemaVentas.App"
              xmlns:local="using:SistemaVentas"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Light">
 
     <Application.DataTemplates>
         <local:ViewLocator/>
