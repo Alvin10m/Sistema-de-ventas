@@ -1,0 +1,259 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SistemaVentas.ViewModels"
+        xmlns:material="using:Material.Icons.Avalonia"
+        x:Class="SistemaVentas.Views.PanelVentasWindow"
+        x:DataType="vm:PanelVentasViewModel"
+        Title="Sistema de Ventas"
+        WindowState="Maximized"
+        MinWidth="1200"
+        MinHeight="700"
+        Background="#F4F6F9">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!-- Barra lateral -->
+            <ColumnDefinition Width="230"/>
+            <!-- Contenido -->
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Barra lateral -->
+        <Border Grid.Column="0" Background="#082545">
+            <DockPanel LastChildFill="False">
+
+                <!-- Título arriba -->
+                <StackPanel DockPanel.Dock="Top"
+                            Margin="16,24,16,32"
+                            Spacing="8">
+
+                    <!-- Ícono de carrito -->
+                    <material:MaterialIcon Kind="Cart"
+                               Width="32"
+                               Height="32"
+                               Foreground="White"
+                               HorizontalAlignment="Center"/>
+
+                    <!-- Texto de la barra lateral -->
+                    <TextBlock Text="Sistema de Ventas"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"/>
+                    
+                </StackPanel>
+
+                <!-- Botón de cerrar sesión -->
+                <Button DockPanel.Dock="Bottom"
+                        Content="Cerrar Sesión"
+                        Margin="12,16"
+                        Padding="12,10"
+                        Background="#1a56db"
+                        Foreground="White"
+                        HorizontalAlignment="Stretch"/>
+
+            </DockPanel>
+        </Border>
+
+        <!-- Contenido principal -->
+        <Grid Grid.Column="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+        <!--Encabezado del panel de ventas-->
+        <StackPanel Grid.Row="0"
+                    Margin="0,0,0,20">
+
+            <!--Ventas e ícono en la misma fila-->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Text="Ventas"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Foreground="#0d1e36"/>
+
+                <!--Ícono de carrito en el panel de ventas-->
+                <material:MaterialIcon Kind="Cart"
+                                       Width="26"
+                                       Height="26"
+                                       Foreground="#0d1d32"
+                                       VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!--Subtítulo del panel de ventas-->
+            <TextBlock Text="Gestión de ventas"
+                       FontSize="14"
+                       Foreground="#7a8fa8"/>
+
+        </StackPanel>
+
+        <!-- Contenedores de información de la venta y buúsqueda de producto -->
+        <Grid Grid.Row="1"
+              ColumnSpacing="20"
+              Margin="0,0,0,20">
+
+            <Grid.ColumnDefinitions>
+
+                <!-- Información de la venta -->
+                <ColumnDefinition Width="*"/>
+
+                <!-- Buscar  y agregar producto -->
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <!-- Contenedor de información de la venta-->
+            <Border Grid.Column="0"
+                    Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="20">
+
+                <StackPanel Spacing="6">
+
+                    <!-- Título -->
+                    <TextBlock Text="Información de la venta"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               Foreground="#0D1E36"/>
+
+                    <!-- Fila para la fecha -->
+                    <Grid>
+                        <Grid.ColumnDefinitions> 
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Fecha:"
+                                   FontWeight="SemiBold"
+                                   Foreground="#0D1E36"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Fecha}"
+                                   FontSize="14"
+                                   Foreground="#0D1E36"
+                                   VerticalAlignment="Center"/>
+
+                    </Grid>
+
+                    <!-- Hora -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Hora:"
+                                   FontWeight="SemiBold"
+                                   Foreground="#0D1E36"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Hora}"
+                                   FontSize="14"
+                                   Foreground="#0D1E36"
+                                   VerticalAlignment="Center"/>
+
+                    </Grid>
+
+                    <!-- Fila para vendedor -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="Vendedor:"
+                                   FontWeight="SemiBold"
+                                   Foreground="#0D1E36"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Vendedor}"
+                                   FontSize="14"
+                                   Foreground="#0D1E36"
+                                   VerticalAlignment="Center"/>
+
+                    </Grid>
+
+                </StackPanel>
+
+            </Border>
+
+            <!-- Contenedor para búsqueda y agregar producto -->
+            <Border Grid.Column="1"
+                    Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="20">
+
+                <StackPanel Spacing="8">
+                    
+                    <!-- Título -->
+                    <TextBlock Text="Buscar Producto"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="#0D1E36"/>
+
+                    <!-- Barra de búsqueda -->
+                    <TextBox PlaceholderText="Código o nombre del producto..."
+                             Background="White"
+                             Foreground="#0D1E36"
+                             BorderBrush="#D1D5DB"
+                             BorderThickness="1"/>
+
+                    <!-- Cantidad y botón -->
+                    <Grid ColumnSpacing="15">
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="180"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Etiqueta -->
+                        <TextBlock Grid.Column="0"
+                                   Text="Cantidad:"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <!-- Cantidad -->
+                        <NumericUpDown Grid.Column="1"
+                                       Minimum="1"
+                                       Maximum="999"
+                                       Value="1"
+                                       Background="White"
+                                       Foreground="Black"/>
+
+                        <!-- Botón -->
+                        <Button Grid.Column="2"
+                                Content="Agregar"
+                                Background="#1A56DB"
+                                Foreground="White"/>
+
+                    </Grid>
+
+                </StackPanel>
+
+
+            </Border>
+
+        </Grid>
+
+
+    </Grid>
+</Grid>
+
+</Window>

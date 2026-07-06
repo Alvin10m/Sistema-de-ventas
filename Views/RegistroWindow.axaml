@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SistemaVentas.ViewModels"
+        x:Class="SistemaVentas.Views.RegistroWindow"
+        x:DataType="vm:RegistroViewModel"
+        Title="Registro de Usuario"
+        Width="420"
+        Height="580"
+        WindowStartupLocation="CenterScreen"
+        Background="#0d1117">
+
+
+    <!-- Contenedor principal centrado -->
+    <StackPanel Margin="40" VerticalAlignment="Center" Spacing="16">
+
+        <!-- Título de la ventana -->
+        <TextBlock Text="Crear cuenta"
+                   FontSize="22"
+                   FontWeight="SemiBold"
+                   Foreground="#e8edf5"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Text="Completa los datos para registrarte"
+                   FontSize="13"
+                   Foreground="#5a6a80"
+                   HorizontalAlignment="Center"/>
+
+        <!-- Campo para el nombre de usuario -->
+        <TextBlock Text="NOMBRE DE USUARIO" FontSize="11" Foreground="#7a8fa8"/>
+        <TextBox Text="{Binding NombreUsuario}"
+                 PlaceholderText = "Ej: alvin123"
+                 Background="#131c2b"
+                 Foreground="#c8d6e8"
+                 CornerRadius="10"/>
+
+        <!-- Campo para la contraseña -->
+        <TextBlock Text="CONTRASEÑA" FontSize="11" Foreground="#7a8fa8"/>
+        <TextBox Text="{Binding Contrasena}"
+                 PasswordChar="*"
+                 PlaceholderText="Mínimo 8 caracteres"
+                 Background="#131c2b"
+                 Foreground="#c8d6e8"
+                 CornerRadius="10"/>
+
+        <!-- Campo confirmar contraseña -->
+        <TextBlock Text="CONFIRMAR CONTRASEÑA" FontSize="11" Foreground="#7a8fa8"/>
+        <TextBox Text="{Binding ConfirmarContrasena}"
+                 PasswordChar="*"
+                 PlaceholderText="Repite tu contraseña"
+                 Background="#131c2b"
+                 Foreground="#c8d6e8"
+                 CornerRadius="10"/>
+
+        <!-- Mensaje de error -->
+        <TextBlock Text="{Binding MensajeError}"
+                   Foreground="#f87171"
+                   FontSize="13"
+                   IsVisible="{Binding HayError}"
+                   TextWrapping="Wrap"/>
+
+        <!-- Botones -->
+        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Stretch">
+            <Button Content="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    HorizontalAlignment="Stretch"
+                    Background="#131c2b"
+                    Foreground="#5a6a80"/>
+            <Button Content="Registrarse"
+                    Command="{Binding RegistrarCommand}"
+                    HorizontalAlignment="Stretch"
+                    Background="#1a56db"
+                    Foreground="White"/>
+        </StackPanel>
+
+    </StackPanel>
+</Window>

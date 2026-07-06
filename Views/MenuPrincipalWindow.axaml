@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SistemaVentas.ViewModels"
+        x:Class="SistemaVentas.Views.MenuPrincipalWindow"
+        x:DataType="vm:MenuPrincipalViewModel"
+        Title="Sistema de Ventas"
+        Width="450"
+        Height="500"
+        WindowStartupLocation="CenterScreen"
+        Background="#0d1117">
+
+    <StackPanel Margin="40"
+                VerticalAlignment="Center"
+                Spacing="25">
+
+        <TextBlock Text="Sistema de Ventas"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Foreground="#e8edf5"/>
+
+        <TextBlock Text="Seleccione una opción"
+                   FontSize="14"
+                   HorizontalAlignment="Center"
+                   Foreground="#7a8fa8"/>
+
+        <Button Content="Ventas"
+                Height="70"
+                FontSize="18"
+                Background="#1a56db"
+                Foreground="White"
+                CornerRadius="10"/>
+
+        <Button Content="Administración"
+                Height="70"
+                FontSize="18"
+                Background="#131c2b"
+                Foreground="#e8edf5"
+                CornerRadius="10"/>
+
+    </StackPanel>
+
+</Window>
