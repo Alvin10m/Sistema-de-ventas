@@ -6,6 +6,9 @@ build_property.AvaloniaNameGeneratorFilterByPath = *
 build_property.AvaloniaNameGeneratorFilterByNamespace = *
 build_property.AvaloniaNameGeneratorViewFileNamingStrategy = NamespaceAndClassName
 build_property.AvaloniaNameGeneratorAttachDevTools = true
+build_property.AvaloniaUseCompiledBindingsByDefault = true
+build_property.AvaloniaMainPackageVersion = 12.0.5
+build_property.AvaloniaPreviewerNetCoreToolPath = /home/alvin/.nuget/packages/avalonia/12.0.5/buildTransitive//../tools/net8.0/designer/Avalonia.Designer.HostApp.dll
 build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
 build_property._MvvmToolkitIsUsingWindowsRuntimePack = false
 build_property.CsWinRTComponent = 
@@ -41,3 +44,6 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [/home/alvin/Escritorio/SistemaVentas/Views/RegistroWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/home/alvin/Escritorio/SistemaVentas/Assets/avalonia-logo.ico]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaResource

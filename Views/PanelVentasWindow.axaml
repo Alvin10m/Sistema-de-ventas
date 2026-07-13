@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:SistemaVentas.ViewModels"
         xmlns:material="using:Material.Icons.Avalonia"
+        xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
         x:Class="SistemaVentas.Views.PanelVentasWindow"
         x:DataType="vm:PanelVentasViewModel"
         Title="Sistema de Ventas"
@@ -9,7 +10,6 @@
         MinWidth="1200"
         MinHeight="700"
         Background="#F4F6F9">
-
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,10 +30,10 @@
 
                     <!-- Ícono de carrito -->
                     <material:MaterialIcon Kind="Cart"
-                               Width="32"
-                               Height="32"
-                               Foreground="White"
-                               HorizontalAlignment="Center"/>
+                                           Width="32"
+                                           Height="32"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"/>
 
                     <!-- Texto de la barra lateral -->
                     <TextBlock Text="Sistema de Ventas"
@@ -43,7 +43,7 @@
                                HorizontalAlignment="Center"
                                TextWrapping="Wrap"
                                TextAlignment="Center"/>
-                    
+
                 </StackPanel>
 
                 <!-- Botón de cerrar sesión -->
@@ -63,275 +63,465 @@
             <Grid.RowDefinitions>
                 <!-- Encabezado -->
                 <RowDefinition Height="Auto"/>
-                <!--Información y búsqueda-->
+                <!-- Información y búsqueda -->
                 <RowDefinition Height="Auto"/>
-                <!--Tabla-->
+                <!-- Tabla -->
                 <RowDefinition Height="*"/>
-                <!-- Notas y resumen-->
+                <!-- Notas y resumen -->
                 <RowDefinition Height="Auto"/>
-                <!-- Botones-->
+                <!-- Botones -->
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-        <!--Encabezado del panel de ventas-->
-        <StackPanel Grid.Row="0"
-                    Margin="0,0,0,20">
+            <!-- Encabezado del panel de ventas -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,13">
 
-            <!--Ventas e ícono en la misma fila-->
-            <StackPanel Orientation="Horizontal" Spacing="8">
-                <TextBlock Text="Ventas"
-                           FontSize="28"
-                           FontWeight="Bold"
-                           Foreground="#0d1e36"/>
+                <!-- Ventas e ícono en la misma fila -->
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="Ventas"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="#0d1e36"/>
 
-                <!--Ícono de carrito en el panel de ventas-->
-                <material:MaterialIcon Kind="Cart"
-                                       Width="26"
-                                       Height="26"
-                                       Foreground="#0d1d32"
-                                       VerticalAlignment="Center"/>
+                    <!-- Ícono de carrito en el panel de ventas -->
+                    <material:MaterialIcon Kind="Cart"
+                                           Width="26"
+                                           Height="26"
+                                           Foreground="#0d1d32"
+                                           VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Subtítulo del panel de ventas -->
+                <TextBlock Text="Gestión de ventas"
+                           FontSize="14"
+                           Foreground="#7a8fa8"/>
+
             </StackPanel>
 
-            <!--Subtítulo del panel de ventas-->
-            <TextBlock Text="Gestión de ventas"
-                       FontSize="14"
-                       Foreground="#7a8fa8"/>
+            <!-- Contenedores de información de la venta y búsqueda de producto -->
+            <Grid Grid.Row="1"
+                  ColumnSpacing="20"
+                  Margin="0,0,0,13">
 
-        </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <!-- Información de la venta -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Buscar y agregar producto -->
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <!-- Contenedores de información de la venta y buúsqueda de producto -->
-        <Grid Grid.Row="1"
-              ColumnSpacing="20"
-              Margin="0,0,0,20">
+                <!-- Contenedor de información de la venta -->
+                <Border Grid.Column="0"
+                        Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20">
 
-            <Grid.ColumnDefinitions>
+                    <StackPanel Spacing="3">
 
-                <!-- Información de la venta -->
-                <ColumnDefinition Width="*"/>
+                        <!-- Título -->
+                        <TextBlock Text="Información de la venta"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="#0D1E36"/>
 
-                <!-- Buscar  y agregar producto -->
-                <ColumnDefinition Width="*"/>
+                        <!-- Fila para la fecha -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Text="Fecha:"
+                                       FontWeight="SemiBold"
+                                       FontSize="12"
+                                       Foreground="#0D1E36"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Fecha}"
+                                       FontSize="12"
+                                       Foreground="#0D1E36"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
 
-            </Grid.ColumnDefinitions>
+                        <!-- Fila para la hora -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Text="Hora:"
+                                       FontWeight="SemiBold"
+                                       FontSize="12"
+                                       Foreground="#0D1E36"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Hora}"
+                                       FontSize="12"
+                                       Foreground="#0D1E36"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
 
-            <!-- Contenedor de información de la venta-->
-            <Border Grid.Column="0"
+                        <!-- Fila para el vendedor -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Text="Vendedor:"
+                                       FontWeight="SemiBold"
+                                       FontSize="12"
+                                       Foreground="#0D1E36"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Vendedor}"
+                                       FontSize="12"
+                                       Foreground="#0D1E36"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Contenedor para búsqueda y agregar producto -->
+                <Border Grid.Column="1"
+                        Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20">
+
+                    <StackPanel Spacing="3">
+
+                        <!-- Título -->
+                        <TextBlock Text="Buscar Producto"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="#0D1E36"/>
+
+                        <!-- Barra de búsqueda -->
+                        <TextBox Text="{Binding BusquedaProducto}"
+                                 PlaceholderText="Código o nombre del producto..."
+                                 Background="White"
+                                 Foreground="#0D1E36"
+                                 BorderBrush="#D1D5DB"
+                                 BorderThickness="1"/>
+
+                        <!-- Cantidad y botón -->
+                        <Grid ColumnSpacing="13">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="180"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Etiqueta cantidad -->
+                            <TextBlock Grid.Column="0"
+                                       Text="Cantidad:"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center"/>
+
+                            <!-- Campo cantidad -->
+                            <NumericUpDown Value="{Binding CantidadProducto}"
+                                           Grid.Column="1"
+                                           Minimum="1"
+                                           Maximum="999"
+                                           Increment="0.1"
+                                           FormatString="0.##"
+                                           Background="White"
+                                           Foreground="Black"/>
+
+                            <!-- Botón agregar -->
+                            <Button Grid.Column="2"
+                                    Content="Agregar"
+                                    Background="#1A56DB"
+                                    Foreground="White"
+                                    BorderBrush="#1A56DB"/>
+
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Tabla de productos con scroll -->
+            <Border Grid.Row="2"
                     Background="White"
                     BorderBrush="#E5E7EB"
                     BorderThickness="1"
                     CornerRadius="12"
-                    Padding="20">
+                    Padding="20"
+                    Margin="0,0,0,12">
 
-                <StackPanel Spacing="3">
-
-                    <!-- Título -->
-                    <TextBlock Text="Información de la venta"
-                               FontSize="13"
+                <DockPanel>
+                    <!-- Título de la tabla-->
+                    <TextBlock DockPanel.Dock="Top"
+                               Text="Detalle de productos"
+                               FontSize="14"
                                FontWeight="SemiBold"
-                               Foreground="#0D1E36"/>
+                               Foreground="#0D1E36"
+                               Margin="0,0,0,8"/>
 
-                    <!-- Fila para la fecha -->
-                    <Grid>
-                        <Grid.ColumnDefinitions> 
-                            <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="0"
-                                   Text="Fecha:"
-                                   FontWeight="SemiBold"
-                                   FontSize="12"
-                                   Foreground="#0D1E36"
-                                   VerticalAlignment="Center"/>
-
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding Fecha}"
-                                   FontSize="12"
-                                   Foreground="#0D1E36"
-                                   VerticalAlignment="Center"/>
-
-                    </Grid>
-
-                    <!-- Fila para la hora -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="0"
-                                   Text="Hora:"
-                                   FontWeight="SemiBold"
-                                   FontSize="12"
-                                   Foreground="#0D1E36"
-                                   VerticalAlignment="Center"/>
-
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding Hora}"
-                                   FontSize="12"
-                                   Foreground="#0D1E36"
-                                   VerticalAlignment="Center"/>
-
-                    </Grid>
-
-                    <!-- Fila para vendedor -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="0"
-                                   Text="Vendedor:"
-                                   FontWeight="SemiBold"
-                                   FontSize="12"
-                                   Foreground="#0D1E36"
-                                   VerticalAlignment="Center"/>
-
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding Vendedor}"
-                                   FontSize="12"
-                                   Foreground="#0D1E36"
-                                   VerticalAlignment="Center"/>
-
-                    </Grid>
-
-                </StackPanel>
-
-            </Border>
-
-            <!-- Contenedor para búsqueda y agregar producto -->
-            <Border Grid.Column="1"
-                    Background="White"
-                    BorderBrush="#E5E7EB"
-                    BorderThickness="1"
-                    CornerRadius="12"
-                    Padding="20">
-
-                <StackPanel Spacing="3">
-                    
-                    <!-- Título -->
-                    <TextBlock Text="Buscar Producto"
-                               FontSize="13"
-                               FontWeight="SemiBold"
-                               Foreground="#0D1E36"/>
-
-                    <!-- Barra de búsqueda -->
-                    <TextBox PlaceholderText="Código o nombre del producto..."
-                             Background="White"
-                             Foreground="#0D1E36"
-                             BorderBrush="#D1D5DB"
-                             BorderThickness="1"/>
-
-                    <!-- Cantidad y botón -->
-                    <Grid ColumnSpacing="13">
+                    <!-- DataGrid para el scroll interno -->
+                    <dg:DataGrid ItemsSource="{Binding ProductosVenta}"
+                                 AutoGenerateColumns="False"
+                                 CanUserReorderColumns="False"
+                                 CanUserResizeColumns="False"
+                                 CanUserSortColumns="False"
+                                 GridLinesVisibility="Horizontal"
+                                 IsReadOnly="True"
+                                 Background="White"
+                                 MaxHeight="240"
+                                 MinHeight="100"
+                                 HeadersVisibility="Column">
                         
+                        <dg:DataGrid.Styles>
+                            <Style Selector="dg|DataGridColumnHeader">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </dg:DataGrid.Styles>
+
+                        <dg:DataGrid.Columns>
+                            <!-- Número de producto en la fila -->
+                            <dg:DataGridTextColumn Header="#"
+                                                   Binding="{Binding Numero}"
+                                                   Width="60"/>
+
+                            <!-- ID del producto -->
+                            <dg:DataGridTextColumn Header="ID del producto"
+                                                   Binding="{Binding IdProducto}"
+                                                   Width="160"/>
+                            
+                            <!-- Nombre del producto -->
+                            <dg:DataGridTextColumn Header="Producto"
+                                                   Binding="{Binding Producto}"
+                                                   Width="2*"/>
+
+                            <!-- Cantidad -->
+                            <dg:DataGridTextColumn Header="Cantidad"
+                                                   Binding="{Binding Cantidad}"
+                                                   Width="100"/>
+
+                            <!-- Precio unitario -->
+                            <dg:DataGridTextColumn Header="Precio Unit."
+                                                   Binding="{Binding PrecioUnitario}"
+                                                   Width="130"/>
+
+                            <!-- Descuento -->
+                            <dg:DataGridTextColumn Header="Descuento"
+                                                   Binding="{Binding Descuento}"
+                                                   Width="120"/>
+
+                            <!-- Subtotal -->
+                            <dg:DataGridTextColumn Header="Subtotal"
+                                                   Binding="{Binding Subtotal}"
+                                                   Width="120"/>
+
+                            <!-- Acciones - botón eliminar -->
+                            <dg:DataGridTemplateColumn Header="Acciones" Width="100">
+                                <dg:DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!-- Botón eliminar con ícono -->
+                                        <Button Background="#FEE2E2"
+                                                BorderBrush="#FEE2E2"
+                                                Padding="8"
+                                                HorizontalAlignment="Center">
+                                            <material:MaterialIcon Kind="Delete"
+                                                                   Width="16"
+                                                                   Height="16"
+                                                                   Foreground="Red"/>
+
+                                        </Button>
+                                    </DataTemplate>
+                                </dg:DataGridTemplateColumn.CellTemplate>
+                            </dg:DataGridTemplateColumn>
+                        </dg:DataGrid.Columns>
+
+                    </dg:DataGrid>
+                </DockPanel>
+            </Border>
+            
+            <!-- Contenedor inferior -->
+            <Grid Grid.Row="3"
+                  ColumnSpacing="20"
+                  Margin="0,0,0,70">
+
+                <Grid.ColumnDefinitions>
+
+                    <!-- Espacio izquierdo -->
+                    <ColumnDefinition Width="*"/>
+
+                    <!-- Resumen -->
+                    <ColumnDefinition Width="420"/>
+
+                </Grid.ColumnDefinitions>
+
+                <!-- Sección de comentarios -->
+                <StackPanel Grid.Column="0"
+                            Spacing="8">
+
+                    <!-- Título "Comentarios"-->
+                    <TextBlock Text="Comentarios"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Foreground="#0D1E36"/>
+
+                    <!-- Campo para comentarios -->
+                    <TextBox Text="{Binding ComentarioVenta}"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Height="90"
+                             Watermark="Escribe aquí tu comentario..."/>
+                </StackPanel>
+
+
+                <!-- Resumen de la venta -->
+                <Border Grid.Column="1"
+                        Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20">
+                    
+                    <Grid>
+                        <!-- Columnas -->
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="180"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Etiqueta -->
-                        <TextBlock Grid.Column="0"
-                                   Text="Cantidad:"
+                        <!-- Filas -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="12"/>
+
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="12"/>
+
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="20"/>
+
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Subtotal -->
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="Subtotal"
+                                   FontSize="12"
                                    FontWeight="SemiBold"
-                                   VerticalAlignment="Center"/>
+                                   Foreground="#374151"/>
 
-                        <!-- Cantidad -->
-                        <NumericUpDown Grid.Column="1"
-                                       Minimum="1"
-                                       Maximum="999"
-                                       Value="1"
-                                       Increment="0.1"
-                                       FormatString="0.##"
-                                       Background="White"
-                                       Foreground="Black"/>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="{Binding SubtotalVenta, StringFormat='$ {0:N2}'}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#374151"/>
 
-                        <!-- Botón -->
-                        <Button Grid.Column="2"
-                                Content="Agregar"
-                                Background="#1A56DB"
-                                Foreground="White"
-                                BorderBrush="#1A56DB"/>
+                        <!-- Descuento -->
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="Descuento"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#374151"/>
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="1"
+                                   Text="{Binding DescuentoVenta, StringFormat='$ {0:N2}'}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#374151"/>
+
+                        <!-- ITBIS -->
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="0"
+                                   Text="ITBIS (18%)"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#374151"/>
+
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="1"
+                                   Text="{Binding ItbisVenta, StringFormat='$ {0:N2}'}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#374151"/>
+
+                        <!-- Separador -->
+                        <Border Grid.Row="5"
+                                Grid.ColumnSpan="2"
+                                Height="1"
+                                Background="#E5E7EB"
+                                Margin="0,8"/>
+
+                        <!-- Total -->
+                        <TextBlock Grid.Row="6"
+                                   Grid.Column="0"
+                                   Text="Total"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#111827"/>
+
+                        <TextBlock Grid.Row="6"
+                                   Grid.Column="1"
+                                   Text="{Binding TotalVenta, StringFormat='$ {0:N2}'}"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Foreground="#16A34A"/>
+
 
                     </Grid>
 
-                </StackPanel>
-               
+                </Border>
 
-            </Border>
+            </Grid>
+
+            <!-- Botón de venta y limpiar -->
+            <Grid Grid.Row="4"
+                  Margin="0,15,0,0">
+
+                <Grid.ColumnDefinitions>
+                    <!-- Espacio vacío -->
+                    <ColumnDefinition Width="*"/>
+
+                    <!-- Botón Limpiar -->
+                    <ColumnDefinition Width="130"/>
+
+                    <!-- Espacio entre botones -->
+                    <ColumnDefinition Width="2"/>
+
+                    <!-- Botón "Finalizar venta" -->
+                    <ColumnDefinition Width="155"/>
+
+                </Grid.ColumnDefinitions>
+
+                <!-- Botón "Limpiar" -->
+                <Button Grid.Column="1"
+                        Content="Limpiar"
+                        Height="30"
+                        Background="White"
+                        Foreground="#1A56DB"
+                        BorderBrush="#1A56DB"
+                        BorderThickness="1"
+                        CornerRadius="8"/>
+
+                <Button Grid.Column="3"
+                        Content="Finalizar Venta"
+                        Height="30"
+                        Background="#009c17"
+                        Foreground="White"
+                        BorderBrush="#ad5cff"
+                        BorderThickness="1"
+                        CornerRadius="8"/>
+        
+            </Grid>
+
 
         </Grid>
-
-        <!-- Tabla de productos con scroll -->
-        <Border Grid.Row="12"
-                Background="White"
-                BorderBrush="#E5E7EB"
-                BorderThickness="1"
-                CornerRadius="12"
-                Padding="20"
-                Margin="0,0,0,16">
-
-            <StackPanel Spacing="12">
-            
-                <!-- Título de la tabla -->
-                <TextBlock Text="Detalle de Productos"
-                           FontSize="14"
-                           FontWeight="SemiBold"
-                           Foreground="#0D1e36"/>
-
-                <!-- Hacer ScrollViewer cuando hay muchos productos -->
-                <ScrollViewer Height="250">
-
-                    <!-- DataGrid: Mostrar la lista conectada al ViewModel -->
-                    <DataGrid ItemsSource="{Binding ProductosVenta}"
-                              AutoGenerateColumns="False"
-                              CanUserReorderColumns="False"
-                              CanUserResizeColumns="False"
-                              CanUserSortColumns="False"
-                              GridLinesVisibility="Horizontal"
-                              IsReadOnly="True"
-                              Background="White">
-
-                        <DataGrid.Columns>
-                            <!-- Número de fila -->
-                            <DataGridTextColumn Header="#"
-                                                Binding="{Binding Numero}"
-                                                Width="50"/>
-                            <!-- ID del producto -->
-                            <DataGridTextColumn Header="ID del producto"
-                                                Binding="{Binding IdProducto}"
-                                                Width="130"/>
-                            <!-- Nombre del producto -->
-                            <DataGridTextColumn Header="Producto"
-                                                Binding="{Binding Producto}"
-                                                Width="*"/>
-                            <!-- Cantidad -->
-                            <DataGridTextColumn Header="Cantidad"
-                                                Binding="{Binding Cantidad}"
-                                                Width="90"/>
-                            <!-- Precio unitario -->
-                            <DataGridTextColumn Header="Precio unit"
-                                                Binding="{Binding PrecioUnitario}"
-                                                Width="110"/>
-                            <!-- Subtotal -->
-                            <DataGridTextColumn Header="Subtotal"
-                                                Binding="{Binding Subtotal}"
-                                                Width="100"/>
-
-                        </DataGrid.Columns>
-
-                    </DataGrid>
-                </ScrollViewer>
-            </StackPanel>
-        </Border>
-        
-
-
-
-
     </Grid>
-</Grid>
-
 </Window>

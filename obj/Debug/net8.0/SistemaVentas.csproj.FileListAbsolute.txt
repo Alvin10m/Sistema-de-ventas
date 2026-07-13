@@ -1,128 +1,3 @@
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/SistemaVentas
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/SistemaVentas.deps.json
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/SistemaVentas.runtimeconfig.json
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/SistemaVentas.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/SistemaVentas.pdb
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Base.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Controls.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.DesignerSupport.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Dialogs.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Markup.Xaml.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Markup.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Metal.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.MicroCom.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.OpenGL.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Vulkan.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Desktop.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Fonts.Inter.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.FreeDesktop.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.FreeDesktop.AtSpi.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.HarfBuzz.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Native.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Remote.Protocol.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Skia.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Themes.Fluent.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Win32.Automation.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.Win32.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Avalonia.X11.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/AvaloniaUI.DiagnosticsSupport.Avalonia.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/CommunityToolkit.Mvvm.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/HarfBuzzSharp.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/MicroCom.Runtime.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.IO.RecyclableMemoryStream.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/SkiaSharp.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/System.IO.Pipelines.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Tmds.DBus.Protocol.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-arm64/native/av_libglesv2.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x64/native/av_libglesv2.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x86/native/av_libglesv2.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/osx/native/libAvaloniaNative.dylib
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-arm/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-arm64/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-loongarch64/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-arm/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-arm64/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-loongarch64/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-riscv64/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-x64/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-riscv64/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-x64/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-x86/native/libHarfBuzzSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/osx/native/libHarfBuzzSharp.dylib
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-arm64/native/libHarfBuzzSharp.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-arm64/native/libHarfBuzzSharp.pdb
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x64/native/libHarfBuzzSharp.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x64/native/libHarfBuzzSharp.pdb
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x86/native/libHarfBuzzSharp.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x86/native/libHarfBuzzSharp.pdb
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-arm/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-arm64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-bionic-arm64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-bionic-x64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-loongarch64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-arm/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-arm64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-loongarch64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-riscv64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-musl-x64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-riscv64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-x64/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/linux-x86/native/libSkiaSharp.so
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/osx/native/libSkiaSharp.dylib
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-arm64/native/libSkiaSharp.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-arm64/native/libSkiaSharp.pdb
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x64/native/libSkiaSharp.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x64/native/libSkiaSharp.pdb
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x86/native/libSkiaSharp.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/runtimes/win-x86/native/libSkiaSharp.pdb
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.csproj.AssemblyReference.cache
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/Avalonia/Resources.Inputs.cache
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/Avalonia/resources
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.GeneratedMSBuildEditorConfig.editorconfig
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.AssemblyInfoInputs.cache
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.AssemblyInfo.cs
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.csproj.CoreCompileInputs.cache
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.csproj.CopyComplete
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/refint/SistemaVentas.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.pdb
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/SistemaVentas.genruntimeconfig.cache
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/obj/Debug/net8.0/ref/SistemaVentas.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/BCrypt-Net-Next.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/ClosedXML.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/ClosedXML.Parser.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/DocumentFormat.OpenXml.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/DocumentFormat.OpenXml.Framework.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/ExcelNumberFormat.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/RBush.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/SixLabors.Fonts.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/System.IO.Packaging.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.Caching.Abstractions.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.Caching.Memory.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Npgsql.dll
-/home/alvin/Escritorio/Trabajos, prácticas y ejercicios /Programacion_de_app/SistemaVentas/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.csproj.AssemblyReference.cache
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/Avalonia/Resources.Inputs.cache
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.dll
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/refint/SistemaVentas.dll
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.pdb
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/Avalonia/resources
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.GeneratedMSBuildEditorConfig.editorconfig
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.AssemblyInfoInputs.cache
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.AssemblyInfo.cs
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.csproj.CoreCompileInputs.cache
-/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.sourcelink.json
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/SistemaVentas
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/SistemaVentas.deps.json
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/SistemaVentas.runtimeconfig.json
@@ -139,6 +14,7 @@
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Avalonia.OpenGL.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Avalonia.Vulkan.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Avalonia.dll
+/home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Avalonia.Controls.DataGrid.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Avalonia.Desktop.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Avalonia.Fonts.Inter.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Avalonia.FreeDesktop.dll
@@ -160,6 +36,8 @@
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/DocumentFormat.OpenXml.Framework.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/ExcelNumberFormat.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/HarfBuzzSharp.dll
+/home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Material.Icons.dll
+/home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Material.Icons.Avalonia.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/MicroCom.Runtime.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -224,8 +102,17 @@
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/runtimes/win-x64/native/libSkiaSharp.pdb
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/runtimes/win-x86/native/libSkiaSharp.dll
 /home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/runtimes/win-x86/native/libSkiaSharp.pdb
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.csproj.AssemblyReference.cache
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/Avalonia/Resources.Inputs.cache
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/Avalonia/resources
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.GeneratedMSBuildEditorConfig.editorconfig
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.AssemblyInfoInputs.cache
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.AssemblyInfo.cs
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.csproj.CoreCompileInputs.cache
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.sourcelink.json
 /home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.csproj.CopyComplete
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.dll
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/refint/SistemaVentas.dll
+/home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.pdb
 /home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/SistemaVentas.genruntimeconfig.cache
 /home/alvin/Escritorio/SistemaVentas/obj/Debug/net8.0/ref/SistemaVentas.dll
-/home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Material.Icons.dll
-/home/alvin/Escritorio/SistemaVentas/bin/Debug/net8.0/Material.Icons.Avalonia.dll

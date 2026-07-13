@@ -11,6 +11,11 @@
 
     <Application.Styles>
         <FluentTheme />
+
+        <!--Estilos del DataGrid   -->
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+
+        <!-- Estilos del Material Icon  -->
         <material:MaterialIconStyles/>
     </Application.Styles>
 
