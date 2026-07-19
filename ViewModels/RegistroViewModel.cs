@@ -5,6 +5,9 @@ using BCrypt.Net;
 using Npgsql;
 using SistemaVentas.Data;
 using System;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using SistemaVentas.Views;
 
 namespace SistemaVentas.ViewModels
 {
@@ -89,8 +92,23 @@ namespace SistemaVentas.ViewModels
 
             comando.ExecuteNonQuery();
 
-            MensajeError = "Usuario registrado correctamente.";
-            HayError = false;
+            // Guardar el usuario que ha iniciado sesión
+            LoginViewModel.UsuarioActual = NombreUsuario;
+
+            // Abrir el menú principal
+            if(Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var ventanaRegistro = desktop.MainWindow;
+
+                var menuPrincipal = new MenuPrincipalWindow
+                {
+                    DataContext = new MenuPrincipalViewModel()
+                };
+                
+                desktop.MainWindow = menuPrincipal;
+                menuPrincipal.Show();
+                ventanaRegistro?.Close();
+            }
         }
 
         [RelayCommand]

@@ -210,6 +210,13 @@
                                  BorderBrush="#D1D5DB"
                                  BorderThickness="1"/>
 
+                        <TextBlock Text="{Binding MensajeVenta}"
+                                   IsVisible="{Binding MostrarMensajeVenta}"
+                                   Foreground="Red"
+                                   FontSize="11"
+                                   Margin="0,5,0,0"
+                                   TextWrapping="Wrap"/>
+
                         <!-- Cantidad y botón -->
                         <Grid ColumnSpacing="13">
                             <Grid.ColumnDefinitions>
@@ -239,7 +246,8 @@
                                     Content="Agregar"
                                     Background="#1A56DB"
                                     Foreground="White"
-                                    BorderBrush="#1A56DB"/>
+                                    BorderBrush="#1A56DB"
+                                    Command="{Binding BuscarYAgregarProductoCommand}"/>
 
                         </Grid>
                     </StackPanel>
@@ -328,7 +336,10 @@
                                         <Button Background="#FEE2E2"
                                                 BorderBrush="#FEE2E2"
                                                 Padding="8"
-                                                HorizontalAlignment="Center">
+                                                HorizontalAlignment="Center"
+                                                Command="{Binding $parent[DataGrid].DataContext.EliminarProductoCommand}"
+                                                CommandParameter="{Binding}">
+
                                             <material:MaterialIcon Kind="Delete"
                                                                    Width="16"
                                                                    Height="16"
@@ -508,8 +519,9 @@
                         Foreground="#1A56DB"
                         BorderBrush="#1A56DB"
                         BorderThickness="1"
-                        CornerRadius="8"/>
-
+                        CornerRadius="8"
+                        Command="{Binding LimpiarVentaCommand}"/>
+                <!-- Botón finalizar venta -->
                 <Button Grid.Column="3"
                         Content="Finalizar Venta"
                         Height="30"
@@ -517,7 +529,8 @@
                         Foreground="White"
                         BorderBrush="#ad5cff"
                         BorderThickness="1"
-                        CornerRadius="8"/>
+                        CornerRadius="8"
+                        Command="{Binding FinalizarVentaCommand}"/>
         
             </Grid>
 

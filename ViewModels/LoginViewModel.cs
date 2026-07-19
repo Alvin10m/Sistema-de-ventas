@@ -1,13 +1,18 @@
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using SistemaVentas.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Npgsql;
 using SistemaVentas.Data;
-using BCrypt.Net;
 
 namespace SistemaVentas.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
+        // usuario que ha iniciado sesión
+        public static string UsuarioActual { get; set; } = string.Empty;
+
         // Campo para el nombre del usuario
         [ObservableProperty]
         private string nombreUsuario = string.Empty;
@@ -74,8 +79,24 @@ namespace SistemaVentas.ViewModels
                 return;
             }
 
-            // Si pasa todas las validaciones, acceso concedido
-            MensajeError = "Acceso concedido, Bienvenido.";
+            // Si pasa todas las validaciones, guarda el usuario que inició sesión
+            UsuarioActual = NombreUsuario;
+
+            // Abrir el menú principal si el inicio de sesión es exitoso
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var ventanaLogin = desktop.MainWindow;
+
+                var menuPrincipal = new MenuPrincipalWindow
+                {
+                    DataContext = new MenuPrincipalViewModel() 
+                };
+                
+                desktop.MainWindow = menuPrincipal;
+                menuPrincipal.Show();
+                ventanaLogin?.Close();
+            }
+            
         }
 
         // Lógica para el botón "Cancelar"

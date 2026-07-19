@@ -7,37 +7,82 @@
         Width="450"
         Height="500"
         WindowStartupLocation="CenterScreen"
-        Background="#0d1117">
+        Background="#0D1117">
 
-    <StackPanel Margin="40"
-                VerticalAlignment="Center"
-                Spacing="25">
+    <Window.Styles>
 
-        <TextBlock Text="Sistema de Ventas"
+        <Style Selector="Button">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        
+        <Style Selector="Button.ventas /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#1A56DB"/>
+            <Setter Property="BorderBrush" Value="#1A56DB"/>
+        </Style>
+
+        
+        <Style Selector="Button.ventas:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#1746B5"/>
+            <Setter Property="BorderBrush" Value="#1746B5"/>
+        </Style>
+
+        
+        <Style Selector="Button.administracion /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#131C2B"/>
+            <Setter Property="BorderBrush" Value="#131C2B"/>
+        </Style>
+
+        
+        <Style Selector="Button.administracion:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#1B2638"/>
+            <Setter Property="BorderBrush" Value="#1B2638"/>
+        </Style>
+
+    </Window.Styles>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto"
+          Margin="50"
+          VerticalAlignment="Center"
+          RowSpacing="20">
+
+        <TextBlock Grid.Row="0"
+                   Text="Sistema de Ventas"
                    FontSize="24"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
-                   Foreground="#e8edf5"/>
+                   Foreground="#E8EDF5"/>
 
-        <TextBlock Text="Seleccione una opción"
+        <TextBlock Grid.Row="1"
+                   Text="Seleccione una opción"
                    FontSize="14"
                    HorizontalAlignment="Center"
-                   Foreground="#7a8fa8"/>
+                   Foreground="#7A8FA8"/>
 
-        <Button Content="Ventas"
+        <Button Grid.Row="2"
+                Classes="ventas"
+                Content="Ventas"
                 Height="70"
                 FontSize="18"
-                Background="#1a56db"
+                Background="#1A56DB"
                 Foreground="White"
-                CornerRadius="10"/>
+                BorderBrush="#1A56DB"
+                CornerRadius="10"
+                Command="{Binding AbrirVentasCommand}"/>
 
-        <Button Content="Administración"
+        <Button Grid.Row="3"
+                Classes="administracion"
+                Content="Administración"
                 Height="70"
                 FontSize="18"
-                Background="#131c2b"
-                Foreground="#e8edf5"
+                Background="#131C2B"
+                Foreground="White"
+                BorderBrush="#131C2B"
                 CornerRadius="10"/>
 
-    </StackPanel>
+    </Grid>
 
 </Window>
