@@ -9,11 +9,43 @@
         WindowStartupLocation="CenterScreen"
         Background="#0d1117">
 
+    <Window.Styles>
+
+        <Style Selector="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Botón Cancelar -->
+        <Style Selector="Button.cancelar /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#131C2B"/>
+            <Setter Property="BorderBrush" Value="#131C2B"/>
+        </Style>
+
+        <Style Selector="Button.cancelar:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#1B2638"/>
+            <Setter Property="BorderBrush" Value="#1B2638"/>
+        </Style>
+
+        <!-- Botón Registrarse -->
+        <Style Selector="Button.registrar /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#1A56DB"/>
+            <Setter Property="BorderBrush" Value="#1A56DB"/>
+        </Style>
+
+        <Style Selector="Button.registrar:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#1746B5"/>
+            <Setter Property="BorderBrush" Value="#1746B5"/>
+        </Style>
+
+    </Window.Styles>
 
     <!-- Contenedor principal centrado -->
-    <StackPanel Margin="40" VerticalAlignment="Center" Spacing="16">
+    <StackPanel Margin="40"
+                VerticalAlignment="Center"
+                Spacing="16">
 
-        <!-- Título de la ventana -->
+        <!-- Título -->
         <TextBlock Text="Crear cuenta"
                    FontSize="22"
                    FontWeight="SemiBold"
@@ -25,16 +57,22 @@
                    Foreground="#5a6a80"
                    HorizontalAlignment="Center"/>
 
-        <!-- Campo para el nombre de usuario -->
-        <TextBlock Text="NOMBRE DE USUARIO" FontSize="11" Foreground="#7a8fa8"/>
+        <!-- Nombre de usuario -->
+        <TextBlock Text="NOMBRE DE USUARIO"
+                   FontSize="11"
+                   Foreground="#7a8fa8"/>
+
         <TextBox Text="{Binding NombreUsuario}"
-                 PlaceholderText = "Ej: alvin123"
+                 PlaceholderText="Ej: alvin123"
                  Background="#131c2b"
                  Foreground="#c8d6e8"
                  CornerRadius="10"/>
 
-        <!-- Campo para la contraseña -->
-        <TextBlock Text="CONTRASEÑA" FontSize="11" Foreground="#7a8fa8"/>
+        <!-- Contraseña -->
+        <TextBlock Text="CONTRASEÑA"
+                   FontSize="11"
+                   Foreground="#7a8fa8"/>
+
         <TextBox Text="{Binding Contrasena}"
                  PasswordChar="*"
                  PlaceholderText="Mínimo 8 caracteres"
@@ -42,8 +80,11 @@
                  Foreground="#c8d6e8"
                  CornerRadius="10"/>
 
-        <!-- Campo confirmar contraseña -->
-        <TextBlock Text="CONFIRMAR CONTRASEÑA" FontSize="11" Foreground="#7a8fa8"/>
+        <!-- Confirmar contraseña -->
+        <TextBlock Text="CONFIRMAR CONTRASEÑA"
+                   FontSize="11"
+                   Foreground="#7a8fa8"/>
+
         <TextBox Text="{Binding ConfirmarContrasena}"
                  PasswordChar="*"
                  PlaceholderText="Repite tu contraseña"
@@ -51,7 +92,7 @@
                  Foreground="#c8d6e8"
                  CornerRadius="10"/>
 
-        <!-- Mensaje de error -->
+        <!-- Mensaje -->
         <TextBlock Text="{Binding MensajeError}"
                    Foreground="#f87171"
                    FontSize="13"
@@ -59,18 +100,27 @@
                    TextWrapping="Wrap"/>
 
         <!-- Botones -->
-        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Stretch">
-            <Button Content="Cancelar"
+        <StackPanel Orientation="Horizontal"
+                    Spacing="10">
+
+            <Button Classes="cancelar"
+                    Content="Cancelar"
                     Command="{Binding CancelarCommand}"
                     HorizontalAlignment="Stretch"
                     Background="#131c2b"
-                    Foreground="#5a6a80"/>
-            <Button Content="Registrarse"
+                    Foreground="#5a6a80"
+                    BorderBrush="#131c2b"/>
+
+            <Button Classes="registrar"
+                    Content="Registrarse"
                     Command="{Binding RegistrarCommand}"
                     HorizontalAlignment="Stretch"
                     Background="#1a56db"
-                    Foreground="White"/>
+                    Foreground="White"
+                    BorderBrush="#1a56db"/>
+
         </StackPanel>
 
     </StackPanel>
+
 </Window>
