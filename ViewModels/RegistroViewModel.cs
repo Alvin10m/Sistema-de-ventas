@@ -114,11 +114,10 @@ namespace SistemaVentas.ViewModels
         [RelayCommand]
         private void Cancelar()
         {
-            NombreUsuario = string.Empty;
-            Contrasena = string.Empty;
-            ConfirmarContrasena = string.Empty;
-            MensajeError = string.Empty;
-            HayError = false;
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                desktop.Shutdown();
+            }
         }
     }
 }

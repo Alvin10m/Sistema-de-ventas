@@ -5,6 +5,9 @@ using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using SistemaVentas.Services;
 using System.Linq;
+using SistemaVentas.Views;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 
 namespace SistemaVentas.ViewModels
 {
@@ -349,7 +352,49 @@ namespace SistemaVentas.ViewModels
                 MensajeVentaEsError = true;
             }
         }
+        // Cerrar sesión y volver al Login
+        [RelayCommand]
+        private void CerrarSesion()
+        {
+            // Limpiar el usuario que inició sesión
+            LoginViewModel.UsuarioActual = string.Empty;
 
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var ventanaActual = desktop.MainWindow;
+
+                var login = new LoginWindow
+                {
+                    DataContext = new LoginViewModel()
+                };
+
+                desktop.MainWindow = login;
+
+                login.Show();
+
+                ventanaActual?.Close();
+            }
+        }
+
+        // Volver al menú principal
+        [RelayCommand]
+        private void VolverAlMenu()
+        {
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            {
+                var ventanaActual = desktop.MainWindow;
+
+                var menu = new MenuPrincipalWindow
+                {
+                    DataContext = new MenuPrincipalViewModel()
+                };
+
+                desktop.MainWindow = menu;
+                menu.Show();
+
+                ventanaActual?.Close();
+            }
+        }
 
     
 }
