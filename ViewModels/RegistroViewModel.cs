@@ -8,6 +8,8 @@ using System;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using SistemaVentas.Views;
+using SistemaVentas.Helpers;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 
 namespace SistemaVentas.ViewModels
 {
@@ -81,20 +83,38 @@ namespace SistemaVentas.ViewModels
                 return;
             }
 
-
             using var comando = new NpgsqlCommand(
-                "INSERT INTO usuario (nombre, contrasena) VALUES (@usuario, @contrasena)",
-                conexion);
+                @"INSERT INTO usuario (nombre, contrasena)
+                  VALUES (@usuario, @contrasena)
+                  RETURNING id, rol, activo",
+                conexion
+            );
 
             comando.Parameters.AddWithValue("usuario", NombreUsuario);
             comando.Parameters.AddWithValue("contrasena", contrasenaCifrada);
 
+            using var lector = comando.ExecuteReader();
 
-            comando.ExecuteNonQuery();
+            if (!lector.Read())
+            {
+                MensajeError = "No se pudo obtener la información del usuario registrado";
+                HayError = true;
+                return;
+            }
 
-            // Guardar el usuario que ha iniciado sesión
+            int idUsuario = lector.GetInt32(0);
+            string rol = lector.GetString(1);
+            bool activo = lector.GetBoolean(2);
+
+            // Guardar la sesión del usuario recién registrado
             LoginViewModel.UsuarioActual = NombreUsuario;
 
+            SesionUsuario.Id = idUsuario;
+            SesionUsuario.Nombre = NombreUsuario;
+            SesionUsuario.Rol = rol;
+            SesionUsuario.Activo = activo;
+            SesionUsuario.Permisos.Clear();
+            
             // Abrir el menú principal
             if(Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {

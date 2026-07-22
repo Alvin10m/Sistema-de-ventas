@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Npgsql;
 using SistemaVentas.Data;
+using SistemaVentas.Helpers;
 
 namespace SistemaVentas.ViewModels
 {
@@ -49,38 +50,54 @@ namespace SistemaVentas.ViewModels
             using var conexion = conexionBD.ObtenerConexion();
             conexion.Open();
 
-            // Búsqueda de datos en la base de datos y devolución de la contraseña del usuario
+            // Buscar los datos del usuario en la base de datos
             using var comando = new NpgsqlCommand(
-                "SELECT contrasena FROM usuario WHERE nombre = @nombre", conexion);
+                @"SELECT id, nombre, contrasena, rol, activo
+                  FROM usuario WHERE nombre = @nombre", conexion);
+            
             comando.Parameters.AddWithValue("nombre", NombreUsuario);
 
-            var resultado = comando.ExecuteScalar();
+            using var lector = comando.ExecuteReader();
 
-            // Validación 2: si el resultado de la consulta es nulo, el usuario no existe
-            if (resultado == null)
+            // Validación 2: verificar que el usuario exista
+            if (!lector.Read())
             {
-                MensajeError = "El usuario no existe en la base de datos.";
+                MensajeError = "El usuario no existe en la base de datos";
                 HayError = true;
                 return;
             }
 
-            // Validación 3: verificar que la contraseña sea correcta
-            if (resultado is not string contrasenaCifrada)
+            // Obtener los datos del usuario
+            int IdUsuario = lector.GetInt32(0);
+            string nombre = lector.GetString(1);
+            string contrasenaCifrada = lector.GetString(2);
+            string rol = lector.GetString(3);
+            bool activo = lector.GetBoolean(4);
+
+            //Validación 3: verificar que el usuario esté activo
+            if (!activo)
             {
-                MensajeError = "Error al obtener la contraseña del usuario.";
+                MensajeError = "Este usuario está desactivado.";
                 HayError = true;
                 return;
             }
 
+            // Validación 4: verificar la contraseña
             if (!BCrypt.Net.BCrypt.Verify(Contrasena, contrasenaCifrada))
             {
-                MensajeError = "La contraseña no es correcta.";
+                MensajeError = "La contraseña es incorrecta.";
                 HayError = true;
                 return;
             }
 
-            // Si pasa todas las validaciones, guarda el usuario que inició sesión
-            UsuarioActual = NombreUsuario;
+            // Guardar los datos del usuario que inició sesion
+            UsuarioActual = nombre;
+
+            SesionUsuario.Id = IdUsuario;
+            SesionUsuario.Nombre = nombre;
+            SesionUsuario.Rol = rol;
+            SesionUsuario.Activo = activo;
+            SesionUsuario.Permisos.Clear();
 
             // Abrir el menú principal si el inicio de sesión es exitoso
             if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
