@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Npgsql;
 using SistemaVentas.Data;
 using SistemaVentas.Helpers;
+using SistemaVentas.Services;
 
 namespace SistemaVentas.ViewModels
 {
@@ -68,7 +69,7 @@ namespace SistemaVentas.ViewModels
             }
 
             // Obtener los datos del usuario
-            int IdUsuario = lector.GetInt32(0);
+            int idUsuario = lector.GetInt32(0);
             string nombre = lector.GetString(1);
             string contrasenaCifrada = lector.GetString(2);
             string rol = lector.GetString(3);
@@ -93,11 +94,11 @@ namespace SistemaVentas.ViewModels
             // Guardar los datos del usuario que inició sesion
             UsuarioActual = nombre;
 
-            SesionUsuario.Id = IdUsuario;
+            SesionUsuario.Id = idUsuario;
             SesionUsuario.Nombre = nombre;
             SesionUsuario.Rol = rol;
             SesionUsuario.Activo = activo;
-            SesionUsuario.Permisos.Clear();
+            PermisoService.CargarPermisos(idUsuario);
 
             // Abrir el menú principal si el inicio de sesión es exitoso
             if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
