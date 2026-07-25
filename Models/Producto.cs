@@ -5,17 +5,29 @@ namespace SistemaVentas.Models
         // Identificador único del producto
         public int Id { get; set; }
 
-    // Nombre del producto
-    public string Nombre { get; set; } = string.Empty;
+        // Código del producto
+        public string Codigo { get; set; } = string.Empty;
 
-    // Precio del producto
-    public float Precio { get; set; }
+        // Nombre del producto
+        public string Nombre { get; set; } = string.Empty;
 
-    // Cantidad en stock del producto
-    public float Cantidad { get; set; }
+        // Precio del producto
+        public float Precio { get; set; }
 
-    // Categoría del producto
-    public string Categoria { get; set; } = string.Empty;
+        // Cantidad en stock del producto
+        public float Cantidad { get; set; }
+
+        //Indicar si el producto está activo
+        public bool Activo { get; set; } = true;
+
+        // Indica si al producto se le aplica ITBIS
+        public bool AplicaIbis { get; set; } 
+
+        // Indicar la categoría del producto
+        public int? IdCategoria { get; set; }
+
+        // Categoría del producto
+        public string Categoria { get; set; } = string.Empty;
 
     }
 }   
