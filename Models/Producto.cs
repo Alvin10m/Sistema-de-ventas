@@ -21,7 +21,10 @@ namespace SistemaVentas.Models
         public bool Activo { get; set; } = true;
 
         // Indica si al producto se le aplica ITBIS
-        public bool AplicaIbis { get; set; } 
+        public bool AplicaItbis { get; set; } 
+
+        // Porcentaje de descuento del producto
+        public float PorcentajeDescuento { get; set; }
 
         // Indicar la categoría del producto
         public int? IdCategoria { get; set; }
