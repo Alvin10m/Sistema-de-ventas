@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Npgsql;
 using SistemaVentas.Data;
 using SistemaVentas.Helpers;
+using SistemaVentas.Models;
 
 namespace SistemaVentas.Services
 {
@@ -49,6 +51,6 @@ namespace SistemaVentas.Services
                 permiso => permiso.Equals(
                     nombrePermiso, 
                     StringComparison.OrdinalIgnoreCase));
-        }
+        }  
     }
 }

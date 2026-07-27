@@ -12,10 +12,10 @@ namespace SistemaVentas.Models
         public string Nombre { get; set; } = string.Empty;
 
         // Precio del producto
-        public float Precio { get; set; }
+        public decimal Precio { get; set; }
 
         // Cantidad en stock del producto
-        public float Cantidad { get; set; }
+        public decimal Cantidad { get; set; }
 
         //Indicar si el producto está activo
         public bool Activo { get; set; } = true;
@@ -24,7 +24,7 @@ namespace SistemaVentas.Models
         public bool AplicaItbis { get; set; } 
 
         // Porcentaje de descuento del producto
-        public float PorcentajeDescuento { get; set; }
+        public decimal PorcentajeDescuento { get; set; }
 
         // Indicar la categoría del producto
         public int? IdCategoria { get; set; }

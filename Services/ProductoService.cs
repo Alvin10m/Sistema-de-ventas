@@ -4,6 +4,9 @@ using SistemaVentas.ViewModels;
 using SistemaVentas.Models;
 using System;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using CommunityToolkit.Mvvm.Input;
+using System.Collections.Generic;
+using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
 
 namespace SistemaVentas.Services
 {
@@ -176,6 +179,13 @@ namespace SistemaVentas.Services
             if (error != null)
                 return error;
 
+            error = ValidarCategoriaProducto(producto);
+            if (error != null)
+                return error;
+
+            error = ValidarDescuentoProducto(producto);
+            if (error != null)
+                return error;
             return null;
         }
 
@@ -184,8 +194,43 @@ namespace SistemaVentas.Services
         {
             if (producto.PorcentajeDescuento < 0 || producto.PorcentajeDescuento > 100)
                 return "El descuento debe estar entre 0 y 100";
-            
+
             return null;
+
+        }
+
+        //Obtener todas las categorias disponibles registrada en la base de datos, ordenadas alfabéticamente 
+        public List<Categoria> ObtenerCategorias()
+        {
+            // Lista para almacenar las categorías obtenidas
+            var categorias = new List<Categoria>();
+
+            // Establecer la conexión con la base de datos
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            // Consulta las categorías activas ordenadas por nombre
+            string sql = @"
+                SELECT id, nombre
+                FROM categorias
+                WHERE activo = TRUE
+                ORDER BY nombre;";
+
+            using var comando = new NpgsqlCommand(sql, conexion);
+            using var lector = comando.ExecuteReader();
+
+            // Recorrer los registros obtenidos
+            while (lector.Read())
+            {
+                categorias.Add(new Categoria
+                {
+                    Id = (int)lector["id"],
+                    Nombre = lector["nombre"].ToString()!
+                });
+            }
+
+            // Devolver la lista de categorías
+            return categorias;
         }
 
     }
