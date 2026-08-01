@@ -35,6 +35,7 @@ namespace SistemaVentas.ViewModels
             Nombre = string.Empty;
             Precio = 0;
             Stock = 0;
+            StockMinimo = 0;
             AplicaItbis = false;
             PorcentajeDescuento = 0;
             CategoriaSeleccionada = null;
@@ -57,6 +58,7 @@ namespace SistemaVentas.ViewModels
                 Nombre = Nombre,
                 Precio = Precio,
                 Cantidad = Stock,
+                StockMinimo = StockMinimo,
                 AplicaItbis = AplicaItbis,
                 PorcentajeDescuento = PorcentajeDescuento,
                 IdCategoria = CategoriaSeleccionada!.Id
@@ -108,6 +110,10 @@ namespace SistemaVentas.ViewModels
         // Cantidad disponible en el inventario
         [ObservableProperty]
         private decimal stock;
+
+        // Cantidad mínima antes de considerar que el producto tiene stock bajo
+        [ObservableProperty]
+        private decimal stockMinimo;
 
         // Indicar si el producto paga ITBIS
         [ObservableProperty]

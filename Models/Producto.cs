@@ -17,10 +17,13 @@ namespace SistemaVentas.Models
         // Cantidad en stock del producto
         public decimal Cantidad { get; set; }
 
-        //Indicar si el producto está activo
+        // Stock mínimo
+        public decimal StockMinimo { get; set; }
+
+        // Indicar si el producto está activo
         public bool Activo { get; set; } = true;
 
-        // Indica si al producto se le aplica ITBIS
+        // Indicar si al producto se le aplica ITBIS
         public bool AplicaItbis { get; set; } 
 
         // Porcentaje de descuento del producto

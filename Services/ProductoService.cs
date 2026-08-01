@@ -65,6 +65,7 @@ namespace SistemaVentas.Services
                     nombre,
                     precio,
                     stock,
+                    stock_minimo,
                     activo,
                     aplica_itbis,
                     porcentaje_descuento,
@@ -76,6 +77,7 @@ namespace SistemaVentas.Services
                     @nombre,
                     @precio,
                     @stock,
+                    @stock_minimo,
                     @activo,
                     @aplica_itbis,
                     @porcentaje_descuento,
@@ -88,6 +90,7 @@ namespace SistemaVentas.Services
                 comando.Parameters.AddWithValue("nombre", producto.Nombre);
                 comando.Parameters.AddWithValue("precio", producto.Precio);
                 comando.Parameters.AddWithValue("stock", producto.Cantidad);
+                comando.Parameters.AddWithValue("stock_minimo", producto.StockMinimo);
                 comando.Parameters.AddWithValue("activo", producto.Activo);
                 comando.Parameters.AddWithValue("aplica_itbis", producto.AplicaItbis);
                 comando.Parameters.AddWithValue("porcentaje_descuento", producto.PorcentajeDescuento);
@@ -130,7 +133,15 @@ namespace SistemaVentas.Services
 
             return null;
         }
-        
+
+        // Validar que el stock mínimo no sea un número negativo
+        public string? ValidarStockMinimoProducto(Producto producto)
+        {
+            if (producto.StockMinimo <= 0)
+            return "El stock mínimo no puede ser negativo.";
+
+            return null;
+        }
         // Validar que el precio no sea menor a 0
         public string? ValidarPrecioProducto(Producto producto)
         {
@@ -172,6 +183,10 @@ namespace SistemaVentas.Services
                 return error;
 
             error = ValidarStockProducto(producto);
+            if (error != null)
+                return error;
+
+            error = ValidarStockMinimoProducto(producto);
             if (error != null)
                 return error;
 
