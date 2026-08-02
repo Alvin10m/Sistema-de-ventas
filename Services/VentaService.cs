@@ -55,9 +55,9 @@ namespace SistemaVentas.Services
                 {
                     string sqlDetalle = @"
                         INSERT INTO detalleventas
-                        (idventa, idproducto, cantidad, preciounitario, descuento, subtotal)
+                        (idventa, idproducto, cantidad, preciounitario, descuento, itbis, subtotal)
                         VALUES
-                        (@idventa, @idproducto, @cantidad, @precio, @descuento, @subtotal);";
+                        (@idventa, @idproducto, @cantidad, @precio, @descuento, @itbis, @subtotal);";
                 
                     using var comandoDetalle = new NpgsqlCommand(sqlDetalle, conexion, transaccion);
 
@@ -66,6 +66,7 @@ namespace SistemaVentas.Services
                     comandoDetalle.Parameters.AddWithValue("cantidad", producto.Cantidad);
                     comandoDetalle.Parameters.AddWithValue("precio", producto.PrecioUnitario);
                     comandoDetalle.Parameters.AddWithValue("descuento", producto.Descuento);
+                    comandoDetalle.Parameters.AddWithValue("itbis", producto.Itbis);
                     comandoDetalle.Parameters.AddWithValue("subtotal", producto.Subtotal);
 
                     comandoDetalle.ExecuteNonQuery();

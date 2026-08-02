@@ -49,6 +49,9 @@ namespace SistemaVentas.ViewModels
 
         // Indicador en caso de que el producto pague ITBIS
         public bool AplicaItbis { get; set; }
+
+        // ITBIS calculado
+        public decimal Itbis { get; set; }
     }
 
     public partial class PanelVentasViewModel : ObservableObject
@@ -164,6 +167,12 @@ namespace SistemaVentas.ViewModels
                 {
                     itbis += producto.Subtotal * 0.18m;
                 }
+                else
+                {
+                    producto.Itbis = 0;
+                }
+                
+                itbis += producto.Itbis;
         }        
         ItbisVenta = itbis;
 
