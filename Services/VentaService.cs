@@ -4,6 +4,7 @@ using SistemaVentas.ViewModels;
 using System.Collections.ObjectModel;
 using System;
 using SistemaVentas.Models;
+using System.Collections.Generic;
 
 
 namespace SistemaVentas.Services
@@ -160,6 +161,37 @@ namespace SistemaVentas.Services
             }
 
             return venta;
+        }
+        
+        // Obtener todas las ventas registradas 
+        public List<VentaListaItem> ObtenerVentas()
+        {
+            var ventas = new List<VentaListaItem>();
+
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string sql = @"
+            SELECT id, fecha, hora, vendedor, total
+            FROM ventas
+            ORDER BY fecha DESC, hora DESC;";
+
+            using var comando = new NpgsqlCommand(sql, conexion);
+            using var lector = comando.ExecuteReader();
+
+            while (lector.Read())
+            {
+                ventas.Add(new VentaListaItem
+                {
+                    IdVenta = lector.GetInt32(0),
+                    Fecha = lector.GetDateTime(1),
+                    Hora = lector.GetTimeSpan(2),
+                    Usuario = lector.GetString(3),
+                    Total = lector.GetDecimal(4)
+                });
+            }
+
+            return ventas;
         }
 
     }
