@@ -248,5 +248,42 @@ namespace SistemaVentas.Services
             return categorias;
         }
 
+        // Obtener los productos activos con su estado de inventario
+        public List<InventarioItem> ObtenerInventario()
+        {
+            var inventario = new List<InventarioItem>();
+
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string sql = @"
+                SELECT codigo, nombre, stock, stock_minimo
+                FROM productos
+                WHERE activo = TRUE;";
+                
+            using var comando = new NpgsqlCommand(sql, conexion);
+            using var lector = comando.ExecuteReader();
+
+            while (lector.Read())
+            {
+                decimal stock = (decimal)lector["stock"];
+                decimal stockMinimo = (decimal)lector["stock_minimo"];
+
+                string estado = stock <= stockMinimo
+                    ? "Stock bajo"
+                    : "Stock suficiente";
+
+                inventario.Add(new InventarioItem
+                {
+                    Codigo = lector["codigo"].ToString()!,
+                    Nombre = lector["nombre"].ToString()!,
+                    Stock = stock,
+                    EstadoInventario = estado
+                });
+            }
+            
+            return inventario;
+        }
+
     }
 }

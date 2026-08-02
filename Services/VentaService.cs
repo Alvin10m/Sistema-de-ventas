@@ -3,6 +3,7 @@ using Npgsql;
 using SistemaVentas.ViewModels;
 using System.Collections.ObjectModel;
 using System;
+using SistemaVentas.Models;
 
 
 namespace SistemaVentas.Services
@@ -91,5 +92,75 @@ namespace SistemaVentas.Services
                 throw;
             }
         }
+
+        public VentaConsulta? BuscarVentaPorId(int idVenta)
+        {
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string sqlVenta = @"
+                SELECT  id, vendedor, fecha, hora, descuento, itbis, total
+                FROM ventas
+                WHERE id = @idventa;";
+
+            using var comandoVenta = new NpgsqlCommand(sqlVenta, conexion);
+            comandoVenta.Parameters.AddWithValue("idventa", idVenta);
+
+            using var lectorVenta = comandoVenta.ExecuteReader();
+
+            if (!lectorVenta.Read())
+                 return null;
+
+            DateTime fecha = lectorVenta.GetDateTime(2);
+            TimeSpan hora = lectorVenta.GetTimeSpan(3);
+
+            var venta = new VentaConsulta
+            {
+                IdVenta = lectorVenta.GetInt32(0),
+                Usuario = lectorVenta.GetString(1),
+                FechaHora = fecha.Date + hora,
+                DescuentoTotal = lectorVenta.GetDecimal(4),
+                ItbisTotal = lectorVenta.GetDecimal(5),
+                Total = lectorVenta.GetDecimal(6)
+            };
+            
+            lectorVenta.Close();
+
+            string sqlDetalles = @"
+                SELECT
+                    p.nombre,
+                    dv.cantidad,
+                    dv.preciounitario,
+                    dv.descuento,
+                    dv.itbis,
+                    dv.subtotal
+                FROM detalleventas dv
+                INNER JOIN productos p
+                    ON P.id = dv.idproducto
+                WHERE dv.idventa = @idventa
+                ORDER BY dv.id;";
+
+            using var comandoDetalles = new NpgsqlCommand(sqlDetalles, conexion);
+            comandoDetalles.Parameters.AddWithValue("idventa", idVenta);
+
+            using var lectorDetalles = comandoDetalles.ExecuteReader();
+
+            while (lectorDetalles.Read())
+            {
+                venta.Productos.Add(new DetalleVentaConsulta
+                {
+                    Producto = lectorDetalles.GetString(0),
+                    Cantidad = lectorDetalles.GetDecimal(1),
+                    PrecioUnitario = lectorDetalles.GetDecimal(2),
+                    Descuento = lectorDetalles.GetDecimal(3),
+                    Itbis = lectorDetalles.GetDecimal(4),
+                    Subtotal = lectorDetalles.GetDecimal(5)
+                });
+            }
+
+            return venta;
+        }
+
     }
+
 }
