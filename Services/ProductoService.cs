@@ -285,5 +285,36 @@ namespace SistemaVentas.Services
             return inventario;
         }
 
+        // Obtener los productos con inventario bajo
+        public List<InventarioItem> ObtenerInventarioBajo()
+        {
+            var productos = new List<InventarioItem>();
+
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string sql = @"
+            SELCT codigo, nombre, stock
+            FROM productos
+            WHERE activo = TRUE 
+            AND stock <= stock_minimo;";
+
+            using var comando = new NpgsqlCommand(sql, conexion);
+            using var lector = comando.ExecuteReader();
+
+            while (lector.Read())
+            {
+                productos.Add(new InventarioItem
+                {
+                    Codigo = lector["codigo"].ToString()!,
+                    Nombre = lector["nombre"].ToString()!,
+                    Stock = (decimal)lector["stock"],
+                    EstadoInventario = "Stock bajo"
+                });
+            }
+
+            return productos;
+        }
+
     }
 }
