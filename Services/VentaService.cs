@@ -194,6 +194,40 @@ namespace SistemaVentas.Services
             return ventas;
         }
 
+        // Obtener las ventas realizadas en una fecha específica
+        public List<VentaPorFechaItem> ObtenerVentasPorFecha(DateTime fecha)
+        {
+            var ventas = new List<VentaPorFechaItem>();
+
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string sql = @"
+            SELECT id, fecha, hora, vendedor, total
+            FROM ventas
+            WHERE fecha = @fecha
+            ORDER BY hora DESC;";
+
+            using var comando = new NpgsqlCommand(sql, conexion);
+            comando.Parameters.AddWithValue("fecha", fecha.Date);
+
+            using var lector = comando.ExecuteReader();
+
+            while (lector.Read())
+            {
+                ventas.Add(new VentaPorFechaItem
+                {
+                    IdVenta = lector.GetInt32(0),
+                    Fecha = lector.GetDateTime(1),
+                    Hora = lector.GetTimeSpan(2),
+                    Usuario = lector.GetString(3),
+                    Total = lector.GetDecimal(4)
+                });
+            }
+
+            return ventas;
+        }
+
     }
 
 }
