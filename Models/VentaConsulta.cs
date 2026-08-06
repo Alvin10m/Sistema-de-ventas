@@ -8,6 +8,9 @@ namespace SistemaVentas.Models
         // Identificador de la venta
         public int IdVenta { get; set; }
 
+        // Código visible de la venta
+        public string CodigoVenta { get; set; } = string.Empty;
+
         // Usuario que realizó la venta
         public string Usuario { get; set; } = string.Empty;
 

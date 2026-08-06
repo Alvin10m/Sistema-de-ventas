@@ -101,7 +101,7 @@ namespace SistemaVentas.Services
             conexion.Open();
 
             string sqlVenta = @"
-                SELECT  id, vendedor, fecha, hora, descuento, itbis, total
+                SELECT  id, codigo, vendedor, fecha, hora, descuento, itbis, total
                 FROM ventas
                 WHERE id = @idventa;";
 
@@ -119,11 +119,12 @@ namespace SistemaVentas.Services
             var venta = new VentaConsulta
             {
                 IdVenta = lectorVenta.GetInt32(0),
-                Usuario = lectorVenta.GetString(1),
+                CodigoVenta = lectorVenta.GetString(1),
+                Usuario = lectorVenta.GetString(2),
                 FechaHora = fecha.Date + hora,
-                DescuentoTotal = lectorVenta.GetDecimal(4),
-                ItbisTotal = lectorVenta.GetDecimal(5),
-                Total = lectorVenta.GetDecimal(6)
+                DescuentoTotal = lectorVenta.GetDecimal(5),
+                ItbisTotal = lectorVenta.GetDecimal(6),
+                Total = lectorVenta.GetDecimal(7)
             };
             
             lectorVenta.Close();
