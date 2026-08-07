@@ -238,6 +238,64 @@ namespace SistemaVentas.Services
             return usuario;
         }
 
+        // Verificar que la contraseña actual del usuario sea correcta
+        public bool VerificarContrasenaActual(string codigoUsuario, string contrasenaActual)
+        {
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string sql = @"
+                SELECT contrasena
+                FROM usuario
+                WHERE codigo = @codigo
+                LIMIT 1;";
+            
+            using var comando = new NpgsqlCommand(sql, conexion);
+            comando.Parameters.AddWithValue("codigo", codigoUsuario.Trim());
+
+            object? resultado = comando.ExecuteScalar();
+
+            if (resultado is null || resultado == DBNull.Value)
+                return false;
+
+            string contrasenaCifrada = resultado.ToString()!;
+
+            return BCrypt.Net.BCrypt.Verify(
+                contrasenaActual,
+                contrasenaCifrada
+            );
+        }
+
+        // Actualizar la contraseña de un usuario
+        public void CambiarContrasena(
+            string codigoUsuario,
+            string nuevaContrasena)
+        {
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string contrasenaCifrada = CifrarContrasena(nuevaContrasena);
+
+            string sql = @"
+                UPDATE usuario
+                SET contrasena = @contrasena
+                WHERE codigo = @codigo;";
+
+            using var comando = new NpgsqlCommand(sql, conexion);
+
+            comando.Parameters.AddWithValue(
+                "contrasena",
+                contrasenaCifrada
+            );
+
+            comando.Parameters.AddWithValue(
+                "codigo",
+                codigoUsuario.Trim()
+            );
+
+            comando.ExecuteNonQuery();
+        }
+
         // Actualizar rol y permisos de un usuario
         public void ActualizarRolYPermisos(
             int idUsuario,
