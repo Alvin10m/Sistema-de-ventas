@@ -190,5 +190,134 @@ namespace SistemaVentas.Services
             }
             return permisos;
         }
+
+        // Buscar un usuario por su código
+        public UsuarioRolConsulta? BuscarUsuarioPorCodigo(string codigo)
+        {
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string sqlUsuario = @"
+                SELECT id, codigo, nombre, rol
+                FROM usuario
+                WHERE codigo = @codigo;";
+
+            using var comandoUsuario = new NpgsqlCommand(sqlUsuario, conexion);
+            comandoUsuario.Parameters.AddWithValue("codigo", codigo.Trim());
+
+            using var lectorUsuario = comandoUsuario.ExecuteReader();
+
+            if (!lectorUsuario.Read())
+                return null;
+
+            var usuario = new UsuarioRolConsulta
+            {
+                Id = lectorUsuario.GetInt32(0),
+                Codigo = lectorUsuario.GetString(1),
+                NombreUsuario = lectorUsuario.GetString(2),
+                Rol = lectorUsuario.GetString(3)
+            };
+
+            lectorUsuario.Close();
+
+            string sqlPermisos = @"
+                SELECT id_permiso
+                FROM usuario_permiso
+                WHERE id_usuario = @id_usuario;";
+
+            using var comandoPermisos = new NpgsqlCommand(sqlPermisos, conexion);
+            comandoPermisos.Parameters.AddWithValue("id_usuario", usuario.Id);
+
+            using var lectorPermisos = comandoPermisos.ExecuteReader();
+
+            while (lectorPermisos.Read())
+            {
+                usuario.IdsPermisos.Add(lectorPermisos.GetInt32(0));
+            }
+
+            return usuario;
+        }
+
+        // Actualizar rol y permisos de un usuario
+        public void ActualizarRolYPermisos(
+            int idUsuario,
+            string nuevoRol,
+            List<int> permisosSeleccionados)
+        {
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            using var transaccion = conexion.BeginTransaction();
+
+            try
+            {
+                string sql = @"
+                    UPDATE usuario
+                    SET rol = @rol
+                    WHERE id = @id_usuario;";
+
+                using var comandoRol = new NpgsqlCommand(sql,conexion, transaccion);
+
+                comandoRol.Parameters.AddWithValue("rol", nuevoRol);
+                comandoRol.Parameters.AddWithValue("id_usuario", idUsuario);
+
+                comandoRol.ExecuteNonQuery();
+
+                string sqlEliminarPermisos = @"
+                    DELETE FROM usuario_permiso
+                    WHERE id_usuario = @id_usuario;";
+
+                using var comandoEliminarPermisos =
+                    new NpgsqlCommand(
+                        sqlEliminarPermisos,
+                        conexion,
+                        transaccion
+                    );
+
+                comandoEliminarPermisos.ExecuteNonQuery();
+
+                string sqlAgregarPermiso = @"
+                    INSERT INTO usuario_permiso
+                    (
+                        id_usuario,
+                        id_permiso
+                    )
+                    VALUES
+                    (
+                        @id_usuario,
+                        @id_permiso
+                    );";
+
+                foreach (int idPermiso in permisosSeleccionados)
+                {
+                    using var comandoPermiso =
+                        new NpgsqlCommand(
+                            sqlAgregarPermiso,
+                            conexion,
+                            transaccion
+                        );
+                    
+                    comandoPermiso.Parameters.AddWithValue(
+                        "id_usuario",
+                        idUsuario
+                    );
+
+                    comandoPermiso.Parameters.AddWithValue(
+                        "id_permiso",
+                        idPermiso
+
+                    );
+                    comandoPermiso.ExecuteNonQuery();
+
+                }
+                transaccion.Commit();
+            }
+            catch
+            {
+                transaccion.Rollback();
+                throw;
+            }
+        }
+        
     }
 }
