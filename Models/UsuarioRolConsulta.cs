@@ -17,5 +17,8 @@ namespace SistemaVentas.Models
 
         // Permisos actuales del usuario
         public List<int> IdsPermisos { get; set; } = new ();
+
+        // Indicar si el usuario se encuentra activo
+        public bool Activo { get; set; }
     }
 }

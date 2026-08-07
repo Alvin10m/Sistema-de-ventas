@@ -198,7 +198,7 @@ namespace SistemaVentas.Services
             conexion.Open();
 
             string sqlUsuario = @"
-                SELECT id, codigo, nombre, rol
+                SELECT id, codigo, nombre, rol, activo
                 FROM usuario
                 WHERE codigo = @codigo;";
 
@@ -215,7 +215,8 @@ namespace SistemaVentas.Services
                 Id = lectorUsuario.GetInt32(0),
                 Codigo = lectorUsuario.GetString(1),
                 NombreUsuario = lectorUsuario.GetString(2),
-                Rol = lectorUsuario.GetString(3)
+                Rol = lectorUsuario.GetString(3),
+                Activo = lectorUsuario.GetBoolean(4)
             };
 
             lectorUsuario.Close();
@@ -236,6 +237,25 @@ namespace SistemaVentas.Services
             }
 
             return usuario;
+        }
+
+        // Cambiar el estado activo o inactivo de un usuario
+        public void CambiarEstadoUsuario(string codigoUsuario, bool nuevoEstado)
+        {
+            using var conexion = conexionBD.ObtenerConexion();
+            conexion.Open();
+
+            string sql = @"
+                UPDATE usuario
+                SET activo = @activo
+                WHERE codigo = @codigo;";
+
+            using var comando = new NpgsqlCommand(sql, conexion);
+
+            comando.Parameters.AddWithValue("activo", nuevoEstado);
+            comando.Parameters.AddWithValue("codigo", codigoUsuario.Trim());
+
+            comando.ExecuteNonQuery();
         }
 
         // Verificar que la contraseña actual del usuario sea correcta
