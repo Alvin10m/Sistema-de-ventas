@@ -25,6 +25,10 @@
         <views:BuscarVentasView/>
     </DataTemplate>
 
+    <DataTemplate DataType="vm:DetallesVentaViewModel">
+        <views:DetallesVentaView/>
+    </DataTemplate>
+
 </Window.DataTemplates>
 
     <Grid>
@@ -142,7 +146,8 @@
                                     HorizontalAlignment="Stretch"
                                     HorizontalContentAlignment="Left"
                                     FontSize="14"
-                                    Padding="25,0"/>
+                                    Padding="25,0"
+                                    Command="{Binding MostrarDetallesVentaCommand}"/>
 
                             <Button Classes="accent"
                                     Content="Consultar facturas"

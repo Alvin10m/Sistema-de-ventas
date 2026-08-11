@@ -75,5 +75,12 @@ namespace SistemaVentas.ViewModels
             ContenidoActual = new BuscarVentasViewModel();
         }
 
+        // Mostrar la pantalla de detalles de ventas
+        [RelayCommand]
+        private void MostrarDetallesVenta()
+        {
+            ContenidoActual = new DetallesVentaViewModel();
+        }
+
     }
 }

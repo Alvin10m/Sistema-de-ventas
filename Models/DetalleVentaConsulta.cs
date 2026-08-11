@@ -2,6 +2,9 @@ namespace SistemaVentas.Models
 {
     public class DetalleVentaConsulta
     {
+        // Código visible del producto
+        public string CodigoProducto { get; set; } = string.Empty;
+        
         // Nombre del producto
         public string Producto { get; set; } = string.Empty;
 

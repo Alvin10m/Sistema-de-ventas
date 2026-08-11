@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 
 namespace SistemaVentas.Models
 {
@@ -6,6 +7,9 @@ namespace SistemaVentas.Models
     {
         // Identificador de la venta
         public int IdVenta { get; set; }
+        
+        // Código visible de la venta
+        public string CodigoVenta { get; set; } = string.Empty;
 
         // Fecha de la venta 
         public DateTime Fecha { get; set; }
@@ -18,11 +22,11 @@ namespace SistemaVentas.Models
         {
             get
             {
-                return Hora.ToString(@"hh\:mm");
+                return DateTime.Today.Add(Hora).ToString("hh:mm tt");
             }
         }
 
-        // Usuario que realizó la ventra
+        // Usuario que realizó la venta
         public string Usuario { get; set; } = string.Empty;
 
         // Monto total de la venta

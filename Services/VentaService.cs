@@ -100,37 +100,59 @@ namespace SistemaVentas.Services
             using var conexion = conexionBD.ObtenerConexion();
             conexion.Open();
 
+            // Consultar los datos generales de la venta
             string sqlVenta = @"
-                SELECT  id, codigo, vendedor, fecha, hora, descuento, itbis, total
+                SELECT
+                    id,
+                    codigo,
+                    vendedor,
+                    fecha,
+                    hora,
+                    subtotal,
+                    descuento,
+                    itbis,
+                    total,
+                    comentario
                 FROM ventas
                 WHERE id = @idventa;";
 
             using var comandoVenta = new NpgsqlCommand(sqlVenta, conexion);
+
             comandoVenta.Parameters.AddWithValue("idventa", idVenta);
 
             using var lectorVenta = comandoVenta.ExecuteReader();
 
+            // Si no existe una venta con ese ID, devolver null
             if (!lectorVenta.Read())
-                 return null;
+            {
+                return null;
+            }
 
-            DateTime fecha = lectorVenta.GetDateTime(2);
-            TimeSpan hora = lectorVenta.GetTimeSpan(3);
+            DateTime fecha = lectorVenta.GetDateTime(3);
+            TimeSpan hora = lectorVenta.GetTimeSpan(4);
 
+            // Crear el objeto con los datos generales de la venta
             var venta = new VentaConsulta
             {
                 IdVenta = lectorVenta.GetInt32(0),
                 CodigoVenta = lectorVenta.GetString(1),
                 Usuario = lectorVenta.GetString(2),
                 FechaHora = fecha.Date + hora,
-                DescuentoTotal = lectorVenta.GetDecimal(5),
-                ItbisTotal = lectorVenta.GetDecimal(6),
-                Total = lectorVenta.GetDecimal(7)
+                Subtotal = lectorVenta.GetDecimal(5),
+                DescuentoTotal = lectorVenta.GetDecimal(6),
+                ItbisTotal = lectorVenta.GetDecimal(7),
+                Total = lectorVenta.GetDecimal(8),
+                Comentario = lectorVenta.IsDBNull(9)
+                    ? string.Empty
+                    : lectorVenta.GetString(9)
             };
-            
+
             lectorVenta.Close();
 
+            // Consultar los productos pertenecientes a la venta
             string sqlDetalles = @"
                 SELECT
+                    p.codigo,
                     p.nombre,
                     dv.cantidad,
                     dv.preciounitario,
@@ -139,11 +161,12 @@ namespace SistemaVentas.Services
                     dv.subtotal
                 FROM detalleventas dv
                 INNER JOIN productos p
-                    ON P.id = dv.idproducto
+                    ON p.id = dv.idproducto
                 WHERE dv.idventa = @idventa
                 ORDER BY dv.id;";
 
             using var comandoDetalles = new NpgsqlCommand(sqlDetalles, conexion);
+
             comandoDetalles.Parameters.AddWithValue("idventa", idVenta);
 
             using var lectorDetalles = comandoDetalles.ExecuteReader();
@@ -152,12 +175,13 @@ namespace SistemaVentas.Services
             {
                 venta.Productos.Add(new DetalleVentaConsulta
                 {
-                    Producto = lectorDetalles.GetString(0),
-                    Cantidad = lectorDetalles.GetDecimal(1),
-                    PrecioUnitario = lectorDetalles.GetDecimal(2),
-                    Descuento = lectorDetalles.GetDecimal(3),
-                    Itbis = lectorDetalles.GetDecimal(4),
-                    Subtotal = lectorDetalles.GetDecimal(5)
+                    CodigoProducto = lectorDetalles.GetString(0),
+                    Producto = lectorDetalles.GetString(1),
+                    Cantidad = lectorDetalles.GetDecimal(2),
+                    PrecioUnitario = lectorDetalles.GetDecimal(3),
+                    Descuento = lectorDetalles.GetDecimal(4),
+                    Itbis = lectorDetalles.GetDecimal(5),
+                    Subtotal = lectorDetalles.GetDecimal(6)
                 });
             }
 
@@ -169,13 +193,13 @@ namespace SistemaVentas.Services
         {
             var ventas = new List<VentaListaItem>();
 
-            using var conexion = conexionBD.ObtenerConexion();
+            using var conexion= conexionBD.ObtenerConexion();
             conexion.Open();
 
             string sql = @"
-            SELECT id, fecha, hora, vendedor, total
-            FROM ventas
-            ORDER BY fecha DESC, hora DESC;";
+                SELECT id, codigo, fecha, hora, vendedor, total
+                FROM ventas
+                ORDER BY fecha DESC, hora DESC;";
 
             using var comando = new NpgsqlCommand(sql, conexion);
             using var lector = comando.ExecuteReader();
@@ -185,11 +209,13 @@ namespace SistemaVentas.Services
                 ventas.Add(new VentaListaItem
                 {
                     IdVenta = lector.GetInt32(0),
-                    Fecha = lector.GetDateTime(1),
-                    Hora = lector.GetTimeSpan(2),
-                    Usuario = lector.GetString(3),
-                    Total = lector.GetDecimal(4)
+                    CodigoVenta = lector.GetString(1),
+                    Fecha = lector.GetDateTime(2),
+                    Hora = lector.GetTimeSpan(3),
+                    Usuario = lector.GetString(4),
+                    Total = lector.GetDecimal(5)
                 });
+
             }
 
             return ventas;

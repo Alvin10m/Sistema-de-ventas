@@ -17,6 +17,9 @@ namespace SistemaVentas.Models
         // Fecha y hora de la venta
         public DateTime FechaHora { get; set; }
 
+        // Subtotal de la venta e ITBIS
+        public decimal Subtotal {get; set; }
+
         // Descuento total aplicado a la venta
         public decimal DescuentoTotal { get; set; }
 
@@ -25,6 +28,9 @@ namespace SistemaVentas.Models
 
         // Monto total de la venta
         public decimal Total { get; set; }
+
+        // Comentario de la venta
+        public string Comentario { get; set; } = string.Empty;
 
         // Productos que forman parte de la venta
         public List<DetalleVentaConsulta> Productos { get; set; } = new();

@@ -10,13 +10,42 @@ namespace SistemaVentas.ViewModels
     public partial class DetallesVentaViewModel : ObservableObject
     {
         private readonly VentaService ventaService;
+        public ObservableCollection<VentaListaItem> Ventas {get; set;} = new();
 
         public DetallesVentaViewModel()
         {
             ventaService = new VentaService();
+
+            CargarVentas();
         }
 
-        // Buscar una venta por el ID ingresado por el usuario
+        private void CargarVentas()
+        {
+            try
+            {
+                Ventas.Clear();
+
+                var ventasRegistradas = ventaService.ObtenerVentas();
+
+                foreach (var venta in ventasRegistradas)
+                {
+                    Ventas.Add(venta);
+                }
+
+                Mensaje = ventasRegistradas.Count == 0
+                    ? "No hay ventas registradas."
+                    : string.Empty;
+
+                EsError = false;
+            }
+            catch
+            {
+                Mensaje = "No fue posible consultar las ventas.";
+                EsError = true;
+            }
+        }
+
+        // Buscar una venta por el código ingresado por el usuario
         [RelayCommand]
         private void BuscarVenta()
         {
@@ -25,30 +54,66 @@ namespace SistemaVentas.ViewModels
             VentaEncontrada = null;
             Productos.Clear();
 
-            // Validar que el ID sea un número entero y mayor que 0
-            if (!int.TryParse(IdVentaBusqueda, out int idVenta) || idVenta <= 0)
+            // Validar que el usuario haya escrito un código
+            if (string.IsNullOrWhiteSpace(CodigoVentaBusqueda))
             {
-                Mensaje = "Debe ingresar un ID de venda válido.";
+                Mensaje = "Debe Ingresar el código de la venta.";
                 EsError = true;
                 return;
             }
+
+            // Buscar la venta dentro de la lista cargada
+            VentaListaItem? ventaLista = BuscarVentaEnLista(CodigoVentaBusqueda);
+
+            // Verificar si la venta existe
+            if (ventaLista is null)
+            {
+                Mensaje = "Venta no encontrada.";
+                EsError = true;
+                return;
+            }
+
+            // Cargar todos los detalles de la venta encontrada
+            CargarDetalleVenta(ventaLista.IdVenta);
+        }
+
+        // Buscar una venta dentro de la lista utilizando su codigo
+        private VentaListaItem? BuscarVentaEnLista(string codigo)
+        {
+            foreach (var venta in Ventas)
+            {
+                if (venta.CodigoVenta.Equals(
+                    codigo.Trim(),
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    return venta;
+                }
+            }
+
+            return null;
+        }
+        
+        // Consultar y cargar todos los detalles de una venta
+        private void CargarDetalleVenta(int idVenta)
+        {
             try
             {
                 VentaConsulta? venta = ventaService.BuscarVentaPorId(idVenta);
 
-                // Verificar si la venta existe
                 if (venta is null)
                 {
-                    Mensaje = "Venta no encontrada";
+                    Mensaje = "Venta no encontrada.";
                     EsError = true;
                     return;
                 }
-                // Guardar los datos generales de la venta
+
+                // Guardar la información general de la venta
                 VentaEncontrada = venta;
 
-                // Limpiar los datos de una búsquda anterior
+                // Limpiar los productos de una consulta anterior
                 Productos.Clear();
 
+                // Cargar los productos pertenecientes a la venta
                 foreach (var producto in venta.Productos)
                 {
                     Productos.Add(producto);
@@ -57,24 +122,33 @@ namespace SistemaVentas.ViewModels
                 Mensaje = string.Empty;
                 EsError = false;
 
-                // Cargar los productos pertenecientes a la venta
-                foreach (var producto in venta.Productos)
-                {
-                    Productos.Add(producto);
-                }
-
-                EsError = false;
             }
-            catch (Exception ex)
+            catch
             {
-                Mensaje = "No fue posible consultar los detalles de la venta. " + ex.Message;
+                Mensaje = "No fue posible consultar los detalles de la venta.";
                 EsError = true;
             }
         }
 
-        // ID escrito por el usuario para buscar la venta.
+        // Mostrar el detalle de una venta seleccionada en la lista
+        [RelayCommand]
+        private void SeleccionarVenta(VentaListaItem? venta)
+        {
+            if (venta is null)
+                return;
+
+            VentaSeleccionada = venta;
+
+            CargarDetalleVenta(venta.IdVenta);
+        }
+
+        // Código escrito por el usuario para realizar la búsqueda
         [ObservableProperty]
-        private string idVentaBusqueda = string.Empty;
+        private string codigoVentaBusqueda = string.Empty;
+
+        // Venta seleccionada por el usuario en la lista
+        [ObservableProperty]
+        private VentaListaItem? ventaSeleccionada;
 
         // Venta encontrada en la base de datos
         [ObservableProperty]

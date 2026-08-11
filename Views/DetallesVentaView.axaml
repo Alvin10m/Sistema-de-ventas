@@ -1,0 +1,322 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:SistemaVentas.ViewModels"
+    xmlns:models="using:SistemaVentas.Models"
+    xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+    x:Class="SistemaVentas.Views.DetallesVentaView"
+    x:DataType="vm:DetallesVentaViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <Grid Background="#F4F6F9"
+              Margin="30">
+
+            <StackPanel Spacing="20">
+
+                <!-- Encabezado -->
+                <StackPanel Spacing="4">
+
+                    <TextBlock Text="Detalles de ventas"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="#0D1E36"/>
+
+                    <TextBlock Text="Consulta una venta específica o selecciona una venta de la lista"
+                               FontSize="14"
+                               Foreground="#7A8FA8"/>
+
+                </StackPanel>
+
+
+                <!-- Buscador -->
+                <Border Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20">
+
+                    <Grid ColumnDefinitions="*,140"
+                          ColumnSpacing="10">
+
+                        <TextBox Grid.Column="0"
+                                 Text="{Binding CodigoVentaBusqueda}"
+                                 PlaceholderText="Ingrese el código de la venta"/>
+
+                        <Button Grid.Column="1"
+                                Content="Buscar"
+                                Classes="accent"
+                                Command="{Binding BuscarVentaCommand}"/>
+
+                    </Grid>
+
+                </Border>
+
+
+                <!-- Mensaje -->
+                <TextBlock Text="{Binding Mensaje}"
+                           Foreground="#DC2626"
+                           FontWeight="SemiBold"
+                           IsVisible="{Binding EsError}"
+                           TextWrapping="Wrap"/>
+
+
+                <!-- Lista General de ventas -->
+                <Border Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20">
+
+                    <StackPanel Spacing="12">
+
+                        <TextBlock Text="Ventas registradas"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#0D1E36"/>
+
+                        <dg:DataGrid ItemsSource="{Binding Ventas}"
+                                     SelectedItem="{Binding VentaSeleccionada}"
+                                     AutoGenerateColumns="False"
+                                     CanUserReorderColumns="False"
+                                     CanUserResizeColumns="False"
+                                     CanUserSortColumns="False"
+                                     IsReadOnly="True"
+                                     GridLinesVisibility="Horizontal"
+                                     Background="White"
+                                     MaxHeight="260"
+                                     HeadersVisibility="Column">
+
+                            <dg:DataGrid.Styles>
+
+                                <Style Selector="dg|DataGridColumnHeader">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+
+                            </dg:DataGrid.Styles>
+
+                            <dg:DataGrid.Columns>
+
+                                <dg:DataGridTextColumn Header="ID"
+                                                       Binding="{Binding IdVenta}"
+                                                       Width="80"/>
+
+                                <dg:DataGridTextColumn Header="Código"
+                                                       Binding="{Binding CodigoVenta}"
+                                                       Width="140"/>
+
+                                <dg:DataGridTextColumn Header="Fecha"
+                                                       Binding="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                                       Width="140"/>
+
+                                <dg:DataGridTextColumn Header="Hora"
+                                                       Binding="{Binding HoraVisible}"
+                                                       Width="160"/>
+
+                                <dg:DataGridTextColumn Header="Vendedor"
+                                                       Binding="{Binding Usuario}"
+                                                       Width="2*"/>
+
+                                <dg:DataGridTextColumn Header="Total"
+                                                       Binding="{Binding Total, StringFormat='$ {0:N2}'}"
+                                                       Width="150"/>
+
+                            </dg:DataGrid.Columns>
+
+                        </dg:DataGrid>
+
+                        <Button Content="Ver detalle de venta seleccionada"
+                                HorizontalAlignment="Right"
+                                Classes="accent"
+                                Command="{Binding SeleccionarVentaCommand}"
+                                CommandParameter="{Binding VentaSeleccionada}"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- Detalle de la venta -->
+                <Border Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20"
+                        IsVisible="{Binding VentaEncontrada}">
+
+                    <StackPanel Spacing="18">
+
+                        <TextBlock Text="Detalle de la venta"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="#0D1E36"/>
+
+
+                        <!-- Información general -->
+                        <Grid ColumnDefinitions="*,*"
+                              ColumnSpacing="30">
+
+                            <StackPanel Grid.Column="0"
+                                        Spacing="8">
+
+                                <TextBlock Text="{Binding VentaEncontrada.CodigoVenta, StringFormat='Código: {0}'}"/>
+
+                                <TextBlock Text="{Binding VentaEncontrada.IdVenta, StringFormat='ID: {0}'}"/>
+
+                                <TextBlock Text="{Binding VentaEncontrada.Usuario, StringFormat='Vendedor: {0}'}"/>
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1"
+                                        Spacing="8">
+
+                                <TextBlock Text="{Binding VentaEncontrada.FechaHora, StringFormat='Fecha y hora: {0:dd/MM/yyyy hh:mm:ss tt}'}"/>
+
+                            </StackPanel>
+
+                        </Grid>
+
+
+                        <!-- Productos -->
+                        <TextBlock Text="Productos incluidos"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#0D1E36"/>
+
+                        <dg:DataGrid ItemsSource="{Binding Productos}"
+                                     AutoGenerateColumns="False"
+                                     CanUserReorderColumns="False"
+                                     CanUserResizeColumns="False"
+                                     CanUserSortColumns="False"
+                                     IsReadOnly="True"
+                                     GridLinesVisibility="Horizontal"
+                                     Background="White"
+                                     MaxHeight="260"
+                                     HeadersVisibility="Column">
+
+                            <dg:DataGrid.Columns>
+
+                                <dg:DataGridTextColumn Header="Código"
+                                                       Binding="{Binding CodigoProducto}"
+                                                       Width="120"/>
+
+                                <dg:DataGridTextColumn Header="Producto"
+                                                       Binding="{Binding Producto}"
+                                                       Width="2*"/>
+
+                                <dg:DataGridTextColumn Header="Cantidad"
+                                                       Binding="{Binding Cantidad}"
+                                                       Width="100"/>
+
+                                <dg:DataGridTextColumn Header="Precio unit."
+                                                       Binding="{Binding PrecioUnitario, StringFormat='$ {0:N2}'}"
+                                                       Width="120"/>
+
+                                <dg:DataGridTextColumn Header="Descuento"
+                                                       Binding="{Binding Descuento, StringFormat='$ {0:N2}'}"
+                                                       Width="120"/>
+
+                                <dg:DataGridTextColumn Header="ITBIS"
+                                                       Binding="{Binding Itbis, StringFormat='$ {0:N2}'}"
+                                                       Width="120"/>
+
+                                <dg:DataGridTextColumn Header="Subtotal"
+                                                       Binding="{Binding Subtotal, StringFormat='$ {0:N2}'}"
+                                                       Width="130"/>
+
+                            </dg:DataGrid.Columns>
+
+                        </dg:DataGrid>
+
+
+                        <!-- Comentario -->
+                        <Border Background="#F9FAFB"
+                                BorderBrush="#E5E7EB"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Padding="15">
+
+                            <StackPanel Spacing="5">
+
+                                <TextBlock Text="Comentario"
+                                           FontWeight="Bold"/>
+
+                                <TextBlock Text="{Binding VentaEncontrada.Comentario}"
+                                           TextWrapping="Wrap"/>
+
+                            </StackPanel>
+
+                        </Border>
+
+
+                        <!-- Resumen -->
+                        <Grid ColumnDefinitions="*,320">
+
+                            <Border Grid.Column="1"
+                                    Background="#F9FAFB"
+                                    BorderBrush="#E5E7EB"
+                                    BorderThickness="1"
+                                    CornerRadius="10"
+                                    Padding="20">
+
+                                <Grid ColumnDefinitions="*,Auto"
+                                      RowDefinitions="Auto,10,Auto,10,Auto,15,Auto">
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="0"
+                                               Text="Subtotal"
+                                               FontWeight="SemiBold"/>
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="{Binding VentaEncontrada.Subtotal, StringFormat='$ {0:N2}'}"/>
+
+                                    <TextBlock Grid.Row="2"
+                                               Grid.Column="0"
+                                               Text="Descuento"
+                                               FontWeight="SemiBold"/>
+
+                                    <TextBlock Grid.Row="2"
+                                               Grid.Column="1"
+                                               Text="{Binding VentaEncontrada.DescuentoTotal, StringFormat='$ {0:N2}'}"/>
+
+                                    <TextBlock Grid.Row="4"
+                                               Grid.Column="0"
+                                               Text="ITBIS"
+                                               FontWeight="SemiBold"/>
+
+                                    <TextBlock Grid.Row="4"
+                                               Grid.Column="1"
+                                               Text="{Binding VentaEncontrada.ItbisTotal, StringFormat='$ {0:N2}'}"/>
+
+                                    <TextBlock Grid.Row="6"
+                                               Grid.Column="0"
+                                               Text="Total"
+                                               FontSize="16"
+                                               FontWeight="Bold"/>
+
+                                    <TextBlock Grid.Row="6"
+                                               Grid.Column="1"
+                                               Text="{Binding VentaEncontrada.Total, StringFormat='$ {0:N2}'}"
+                                               FontSize="16"
+                                               FontWeight="Bold"
+                                               Foreground="#16A34A"/>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </Border>
+
+            </StackPanel>
+
+        </Grid>
+
+    </ScrollViewer>
+
+</UserControl>
