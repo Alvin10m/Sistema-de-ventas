@@ -1,0 +1,177 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:SistemaVentas.ViewModels"
+    xmlns:models="using:SistemaVentas.Models"
+    xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+    x:Class="SistemaVentas.Views.ConsultarInventarioView"
+    x:DataType="vm:ConsultarInventarioViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <Grid Background="#F4F6F9"
+              Margin="30">
+
+            <StackPanel Spacing="20">
+
+                <!-- Encabezado -->
+                <StackPanel Spacing="4">
+
+                    <TextBlock Text="Consultar inventario"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="#0D1E36"/>
+
+                    <TextBlock Text="Consulta el estado actual de los productos registrados"
+                               FontSize="14"
+                               Foreground="#7A8FA8"/>
+
+                </StackPanel>
+
+                <!-- Mensaje general -->
+                <TextBlock Text="{Binding Mensaje}"
+                           Foreground="#DC2626"
+                           FontWeight="SemiBold"
+                           IsVisible="{Binding EsError}"
+                           TextWrapping="Wrap"/>
+
+                <!-- Stock bajo -->
+
+                <Border Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20">
+
+                    <StackPanel Spacing="12">
+
+                        <TextBlock Text="Productos con stock bajo"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#DC2626"/>
+
+                        <TextBlock Text="No existen productos con stock bajo."
+                                   Foreground="#6B7280"
+                                   IsVisible="{Binding NoHayStockBajo}"/>
+
+                        <dg:DataGrid ItemsSource="{Binding ProductosStockBajo}"
+                                     AutoGenerateColumns="False"
+                                     CanUserReorderColumns="False"
+                                     CanUserResizeColumns="False"
+                                     CanUserSortColumns="False"
+                                     IsReadOnly="True"
+                                     GridLinesVisibility="Horizontal"
+                                     Background="White"
+                                     MinHeight="120"
+                                     MaxHeight="250"
+                                     HeadersVisibility="Column">
+
+                            <dg:DataGrid.Styles>
+
+                                <Style Selector="dg|DataGridColumnHeader">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+
+                            </dg:DataGrid.Styles>
+
+                            <dg:DataGrid.Columns>
+
+                                <dg:DataGridTextColumn Header="Código"
+                                                       Binding="{Binding Codigo}"
+                                                       Width="150"/>
+
+                                <dg:DataGridTextColumn Header="Producto"
+                                                       Binding="{Binding Nombre}"
+                                                       Width="2*"/>
+
+                                <dg:DataGridTextColumn Header="Stock"
+                                                       Binding="{Binding Stock}"
+                                                       Width="120"/>
+
+                                <dg:DataGridTextColumn Header="Estado"
+                                                       Binding="{Binding EstadoInventario}"
+                                                       Width="160"/>
+
+                            </dg:DataGrid.Columns>
+
+                        </dg:DataGrid>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <!-- Stock suficiente -->
+
+                <Border Background="White"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20">
+
+                    <StackPanel Spacing="12">
+
+                        <TextBlock Text="Productos con stock suficiente"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#16A34A"/>
+
+                        <TextBlock Text="No existen productos con stock suficiente."
+                                   Foreground="#6B7280"
+                                   IsVisible="{Binding NoHayStockSuficiente}"/>
+
+                        <dg:DataGrid ItemsSource="{Binding ProductosStockSuficiente}"
+                                     AutoGenerateColumns="False"
+                                     CanUserReorderColumns="False"
+                                     CanUserResizeColumns="False"
+                                     CanUserSortColumns="False"
+                                     IsReadOnly="True"
+                                     GridLinesVisibility="Horizontal"
+                                     Background="White"
+                                     MinHeight="120"
+                                     MaxHeight="250"
+                                     HeadersVisibility="Column">
+
+                            <dg:DataGrid.Styles>
+
+                                <Style Selector="dg|DataGridColumnHeader">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+
+                            </dg:DataGrid.Styles>
+
+                            <dg:DataGrid.Columns>
+
+                                <dg:DataGridTextColumn Header="Código"
+                                                       Binding="{Binding Codigo}"
+                                                       Width="150"/>
+
+                                <dg:DataGridTextColumn Header="Producto"
+                                                       Binding="{Binding Nombre}"
+                                                       Width="2*"/>
+
+                                <dg:DataGridTextColumn Header="Stock"
+                                                       Binding="{Binding Stock}"
+                                                       Width="120"/>
+
+                                <dg:DataGridTextColumn Header="Estado"
+                                                       Binding="{Binding EstadoInventario}"
+                                                       Width="160"/>
+
+                            </dg:DataGrid.Columns>
+
+                        </dg:DataGrid>
+
+                    </StackPanel>
+
+                </Border>
+
+            </StackPanel>
+
+        </Grid>
+
+    </ScrollViewer>
+
+</UserControl>

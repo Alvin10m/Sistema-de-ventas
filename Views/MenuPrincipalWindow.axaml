@@ -76,6 +76,7 @@
         <Button Grid.Row="3"
                 Classes="administracion"
                 Content="Administración"
+                Click="AbrirPanelAdministracion_Click"
                 Height="70"
                 FontSize="18"
                 Background="#131C2B"

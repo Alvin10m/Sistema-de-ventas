@@ -1,0 +1,303 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SistemaVentas.ViewModels"
+        xmlns:views="using:SistemaVentas.Views"
+        x:Class="SistemaVentas.Views.PanelAdministracionWindow"
+        x:DataType="vm:PanelAdministracionViewModel"
+        Title="Panel de Administración"
+        WindowState="Maximized"
+        MinWidth="1200"
+        MinHeight="700"
+        Background="#F4F6F9">
+
+
+<Window.DataTemplates>
+    
+    <DataTemplate DataType="{x:Type vm:AgregarProductoViewModel}">
+        <views:AgregarProductoView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ConsultarInventarioViewModel}">
+        <views:ConsultarInventarioView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:BuscarVentasViewModel}">
+        <views:BuscarVentasView/>
+    </DataTemplate>
+
+</Window.DataTemplates>
+
+    <Grid>
+
+
+        <Grid.ColumnDefinitions>
+
+            <!-- Barra lateral -->
+            <ColumnDefinition Width="230"/>
+
+            <!-- Contenido principal -->
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Barra lateral -->
+
+        <Border Grid.Column="0"
+                Background="#082545">
+
+            <Grid RowDefinitions="*,Auto">
+
+                <!-- Menús -->
+
+                <ScrollViewer Grid.Row="0"
+                              VerticalScrollBarVisibility="Auto"
+                              Margin="12,16,12,0">
+
+                    <StackPanel Spacing="6">
+
+
+                        <!-- Productos -->
+
+                        <Button Classes="accent"
+                                Content="Productos"
+                                Height="28"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Padding="15,0"
+                                Command="{Binding AlternarProductosCommand}"/>
+
+                        <StackPanel IsVisible="{Binding ProductosExpandido}"
+                                    Spacing="4"
+                                    Margin="0,0,0,8">
+
+                            <Button Classes="accent"
+                                    Content="Agregar producto"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"
+                                    Command="{Binding MostrarAgregarProductoCommand}"/>
+
+                            <Button Classes="accent"
+                                    Content="Editar producto"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                            <Button Classes="accent"
+                                    Content="Desactivar producto"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                            <Button Classes="accent"
+                                    Content="Consultar inventario"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"
+                                    Command="{Binding MostrarConsultarInventarioCommand}"/>
+
+
+                        </StackPanel>
+
+
+                        <!-- Facturas -->
+
+                        <Button Classes="accent"
+                                Content="Facturas"
+                                Height="28"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Padding="15,0"
+                                Command="{Binding AlternarFacturasCommand}"/>
+
+                        <StackPanel IsVisible="{Binding FacturasExpandido}"
+                                    Spacing="4"
+                                    Margin="0,0,0,8">
+
+                            <Button Classes="accent"
+                                    Content="Buscar ventas"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"
+                                    Command="{Binding MostrarBuscarVentasCommand}"/>
+
+                            <Button Classes="accent"
+                                    Content="Detalles de ventas"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                            <Button Classes="accent"
+                                    Content="Consultar facturas"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                        </StackPanel>
+
+
+                        
+                        <!-- Reportes -->
+
+                        <Button Classes="accent"
+                                Content="Reportes"
+                                Height="28"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Padding="15,0"
+                                Command="{Binding AlternarReportesCommand}"/>
+
+                        <StackPanel IsVisible="{Binding ReportesExpandido}"
+                                    Spacing="4"
+                                    Margin="0,0,0,8">
+
+                            <Button Classes="accent"
+                                    Content="Ventas por fechas"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                            <Button Classes="accent"
+                                    Content="Ingresos"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                            <Button Classes="accent"
+                                    Content="Inventario bajo"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                        </StackPanel>
+
+
+                        
+                        <!-- Usuarios -->
+
+                        <Button Classes="accent"
+                                Content="Usuarios"
+                                Height="28"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Padding="15,0"
+                                Command="{Binding AlternarUsuariosCommand}"/>
+
+                        <StackPanel IsVisible="{Binding UsuariosExpandido}"
+                                    Spacing="4"
+                                    Margin="0,0,0,8">
+
+                            <Button Classes="accent"
+                                    Content="Crear usuario"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                            <Button Classes="accent"
+                                    Content="Asignar rol"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                            <Button Classes="accent"
+                                    Content="Cambiar contraseña"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                            <Button Classes="accent"
+                                    Content="Estado de usuario"
+                                    Height="28"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    FontSize="14"
+                                    Padding="25,0"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+                <!-- Botones inferiores -->
+
+                <StackPanel Grid.Row="1"
+                            Spacing="8"
+                            Margin="12,16,12,16">
+
+                    <Border Height="1"
+                            Background="#566779"
+                            Margin="0,0,0,4"/>
+
+                    <Button Classes="accent"
+                            Content="Volver al menú principal"
+                            Height="28"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            Padding="15,0"
+                            Foreground="White"
+                            Click="VolverMenuPrincipal_Click"/>
+
+                    <Button Classes="accent"
+                            Content="Cerrar sesión"
+                            Height="28"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            Padding="15,0"
+                            Foreground="White"
+                            Click="CerrarSesion_Click"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+        <!-- Área de contenido (Barra derecha) -->
+        <Grid Grid.Column="1"
+              Background="#F4F6F9">
+
+            <ContentControl Content="{Binding ContenidoActual}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"/>
+
+        </Grid>
+
+    </Grid>
+
+</Window>

@@ -30,15 +30,18 @@ namespace SistemaVentas.ViewModels
         }
 
         // Limpiar los campos editables del formulario
+        [RelayCommand]
         public void LimpiarFormulario()
         {
             Nombre = string.Empty;
-            Precio = 0;
-            Stock = 0;
-            StockMinimo = 0;
+            Precio = null;
+            Stock = null;
+            StockMinimo = null;
             AplicaItbis = false;
-            PorcentajeDescuento = 0;
+            PorcentajeDescuento = null;
             CategoriaSeleccionada = null;
+            Mensaje = string.Empty;
+            EsError = false;
         }
 
         // Guardar un nuevo producto en la base de datos
@@ -56,11 +59,11 @@ namespace SistemaVentas.ViewModels
             {
                 Codigo = Codigo,
                 Nombre = Nombre,
-                Precio = Precio,
-                Cantidad = Stock,
-                StockMinimo = StockMinimo,
+                Precio = Precio ?? 0,
+                Cantidad = Stock ?? 0,
+                StockMinimo = StockMinimo ?? 0,
                 AplicaItbis = AplicaItbis,
-                PorcentajeDescuento = PorcentajeDescuento,
+                PorcentajeDescuento = PorcentajeDescuento ?? 0,
                 IdCategoria = CategoriaSeleccionada!.Id
             };
 
@@ -105,15 +108,15 @@ namespace SistemaVentas.ViewModels
 
         // Precio de venta.
         [ObservableProperty]
-        private decimal precio;
+        private decimal? precio;
 
         // Cantidad disponible en el inventario
         [ObservableProperty]
-        private decimal stock;
+        private decimal? stock;
 
         // Cantidad mínima antes de considerar que el producto tiene stock bajo
         [ObservableProperty]
-        private decimal stockMinimo;
+        private decimal? stockMinimo;
 
         // Indicar si el producto paga ITBIS
         [ObservableProperty]
@@ -121,7 +124,7 @@ namespace SistemaVentas.ViewModels
 
         // Porcentaje de descuento.
         [ObservableProperty]
-        private decimal porcentajeDescuento;
+        private decimal? porcentajeDescuento;
         
         // Categoría seleccionada
         [ObservableProperty]

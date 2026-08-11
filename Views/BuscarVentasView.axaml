@@ -1,0 +1,115 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:SistemaVentas.ViewModels"
+    xmlns:models="using:SistemaVentas.Models"
+    xmlns:dg="clr-namespace:Avalonia.Controls;assembly=Avalonia.Controls.DataGrid"
+    x:Class="SistemaVentas.Views.BuscarVentasView"
+    x:DataType="vm:BuscarVentasViewModel">
+
+
+    <Grid Background="#F4F6F9"
+          Margin="30">
+
+        <Border Background="White"
+                BorderBrush="#E5E7EB"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="25">
+
+            <Grid RowDefinitions="Auto,Auto,*"
+                  RowSpacing="15">
+
+                <!-- Encabezado -->
+                <StackPanel Grid.Row="0"
+                            Spacing="4">
+
+                    <TextBlock Text="Buscar ventas"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="#0D1E36"/>
+
+                    <TextBlock Text="Consulta todas las ventas registradas en el sistema"
+                               FontSize="14"
+                               Foreground="#7A8FA8"/>
+                
+                </StackPanel>
+
+                <!-- Mensaje -->
+                <StackPanel Grid.Row="1">
+
+                    <!-- Error -->
+                    <TextBlock Text="{Binding Mensaje}"
+                               Foreground="#DC2626"
+                               FontWeight="SemiBold"
+                               IsVisible="{Binding EsError}"
+                               TextWrapping="Wrap"/>
+
+                    <!-- Mensaje informativo -->
+                    <TextBlock Text="{Binding Mensaje}"
+                               Foreground="#6B7280"
+                               FontWeight="SemiBold"
+                               IsVisible="{Binding !EsError}"
+                               TextWrapping="Wrap"/>
+
+                </StackPanel>
+
+                <!-- Tabla de ventas -->
+                <dg:DataGrid Grid.Row="2"
+                             ItemsSource="{Binding Ventas}"
+                             AutoGenerateColumns="False"
+                             CanUserReorderColumns="False"
+                             CanUserResizeColumns="False"
+                             CanUserSortColumns="False"
+                             IsReadOnly="True"
+                             GridLinesVisibility="Horizontal"
+                             Background="White"
+                             HeadersVisibility="Column">
+
+                    <dg:DataGrid.Styles>
+
+                        <Style Selector="dg|DataGridColumnHeader">
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+
+                    </dg:DataGrid.Styles>
+
+                    <dg:DataGrid.Columns>
+
+                        <!-- ID -->
+                        <dg:DataGridTextColumn Header="ID de venta"
+                                               Binding="{Binding IdVenta}"
+                                               Width="130"/>
+
+                        <!-- Fecha -->
+                        <dg:DataGridTextColumn Header="Fecha"
+                                               Binding="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                               Width="180"/>
+                        
+                        <!-- Hora -->
+                        <dg:DataGridTextColumn Header="Hora"
+                                               Binding="{Binding HoraVisible}"
+                                               Width="180"/>
+
+                        <!-- Vendedor -->
+                        <dg:DataGridTextColumn Header="Vendedor"
+                                               Binding="{Binding Usuario}"
+                                               Width="2*"/>
+
+                        <!-- Total -->
+                        <dg:DataGridTextColumn Header="Total"
+                                               Binding="{Binding Total, StringFormat='$ {0:N2}'}"
+                                               Width="180"/>
+
+                    </dg:DataGrid.Columns>
+
+                </dg:DataGrid>
+            
+            </Grid>
+        
+        </Border>
+
+    </Grid>
+
+</UserControl>

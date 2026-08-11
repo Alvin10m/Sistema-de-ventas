@@ -1,0 +1,201 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:SistemaVentas.ViewModels"
+    xmlns:models="using:SistemaVentas.Models"
+    x:Class="SistemaVentas.Views.AgregarProductoView"
+    x:DataType="vm:AgregarProductoViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <Grid Background="#F4F6F9"
+              Margin="30">
+
+            <Border Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="30"
+                    MaxWidth="850"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+
+                <StackPanel Spacing="18">
+
+                    <!-- Encabezado -->
+                    <StackPanel Spacing="4">
+
+                        <TextBlock Text="Agregar producto"
+                                   FontSize="28"
+                                   FontWeight="Bold"
+                                   Foreground="#0D1E36"/>
+
+                        <TextBlock Text="Registra un nuevo producto en el sistema"
+                                   FontSize="14"
+                                   Foreground="#7A8FA8"/>
+
+                    </StackPanel>
+
+
+                    <!-- Código generado automáticamente -->
+                    <StackPanel Spacing="5">
+
+                        <TextBlock Text="Código del producto"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBox Text="{Binding Codigo}"
+                                 IsReadOnly="True"
+                                 Background="#F3F4F6"
+                                 Foreground="#374151"/>
+
+                    </StackPanel>
+
+
+                    <!-- Nombre -->
+                    <StackPanel Spacing="5">
+
+                        <TextBlock Text="Nombre del producto"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBox Text="{Binding Nombre}"
+                                 PlaceholderText="Ingrese el nombre del producto"/>
+
+                    </StackPanel>
+
+
+                    <!-- Precio y stock -->
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="15">
+
+                        <StackPanel Grid.Column="0"
+                                    Spacing="5">
+
+                            <TextBlock Text="Precio"
+                                       FontWeight="SemiBold"/>
+
+                            <NumericUpDown Value="{Binding Precio}"
+                                           Minimum="0"
+                                           Increment="1"
+                                           FormatString="0.00"/>
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"
+                                    Spacing="5">
+
+                            <TextBlock Text="Cantidad en stock"
+                                       FontWeight="SemiBold"/>
+
+                            <NumericUpDown Value="{Binding Stock}"
+                                           Minimum="0"
+                                           Increment="1"
+                                           FormatString="0.##"/>
+
+                        </StackPanel>
+
+                    </Grid>
+
+
+                    <!-- Stock mínimo y descuento -->
+                    <Grid ColumnDefinitions="*,*"
+                          ColumnSpacing="15">
+
+                        <StackPanel Grid.Column="0"
+                                    Spacing="5">
+
+                            <TextBlock Text="Stock mínimo"
+                                       FontWeight="SemiBold"/>
+
+                            <NumericUpDown Value="{Binding StockMinimo}"
+                                           Minimum="0"
+                                           Increment="1"
+                                           FormatString="0.##"/>
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"
+                                    Spacing="5">
+
+                            <TextBlock Text="Porcentaje de descuento"
+                                       FontWeight="SemiBold"/>
+
+                            <NumericUpDown Value="{Binding PorcentajeDescuento}"
+                                           Minimum="0"
+                                           Maximum="100"
+                                           Increment="1"
+                                           FormatString="0.##"/>
+
+                        </StackPanel>
+
+                    </Grid>
+
+
+                    <!-- Categoría -->
+                    <StackPanel Spacing="5">
+
+                        <TextBlock Text="Categoría"
+                                   FontWeight="SemiBold"/>
+
+                        <ComboBox ItemsSource="{Binding Categorias}"
+                                  SelectedItem="{Binding CategoriaSeleccionada}"
+                                  PlaceholderText="Seleccione una categoría">
+
+                            <ComboBox.ItemTemplate>
+
+                                <DataTemplate x:DataType="models:Categoria">
+
+                                    <TextBlock Text="{Binding Nombre}"/>
+
+                                </DataTemplate>
+
+                            </ComboBox.ItemTemplate>
+
+                        </ComboBox>
+
+                    </StackPanel>
+
+
+                    <!-- ITBIS -->
+                    <CheckBox Content="Aplica ITBIS"
+                              IsChecked="{Binding AplicaItbis}"/>
+
+
+                    <!-- Mensaje de error -->
+                    <TextBlock Text="{Binding Mensaje}"
+                               Foreground="#DC2626"
+                               FontWeight="SemiBold"
+                               IsVisible="{Binding EsError}"
+                               TextWrapping="Wrap"/>
+
+
+                    <!-- Botones -->
+                    <Grid ColumnDefinitions="*,140,10,160"
+                          Margin="0,10,0,0">
+
+                        <Button Grid.Column="1"
+                                Content="Limpiar"
+                                Height="34"
+                                Background="White"
+                                Foreground="#1A56DB"
+                                BorderBrush="#1A56DB"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Command="{Binding LimpiarFormularioCommand}"/>
+
+                        <Button Grid.Column="3"
+                                Content="Guardar producto"
+                                Height="34"
+                                Classes="accent"
+                                Command="{Binding GuardarProductoCommand}"/>
+
+                    </Grid>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+
+    </ScrollViewer>
+
+</UserControl>

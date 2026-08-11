@@ -13,6 +13,15 @@ namespace SistemaVentas.Models
         // Hora de la venta
         public TimeSpan Hora { get; set; }
 
+        // Hora visible en la pantalla
+        public string HoraVisible
+        {
+            get
+            {
+                return Hora.ToString(@"hh\:mm");
+            }
+        }
+
         // Usuario que realizó la ventra
         public string Usuario { get; set; } = string.Empty;
 
