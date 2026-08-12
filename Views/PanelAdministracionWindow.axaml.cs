@@ -10,7 +10,16 @@ namespace SistemaVentas.Views
         {
             InitializeComponent();
 
-            DataContext = new PanelAdministracionViewModel();
+            var viewModel = new PanelAdministracionViewModel();
+
+            viewModel.SolicitarAbrirCrearUsuario += () =>
+            {
+                var ventanaCrearUsuario = new CrearUsuarioWindow();
+
+                ventanaCrearUsuario.ShowDialog(this);
+            };
+
+            DataContext = viewModel;
 
         }
 
