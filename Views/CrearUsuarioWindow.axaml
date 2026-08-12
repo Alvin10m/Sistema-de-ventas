@@ -1,0 +1,95 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SistemaVentas.Views.CrearUsuarioWindow"
+    xmlns:vm="using:SistemaVentas.ViewModels"
+    xmlns:models="using:SistemaVentas.Models"
+    x:DataType="vm:CrearUsuarioViewModel"
+    Width="700"
+    Height="650"
+    WindowStartupLocation="CenterOwner"
+    Title="Crear usuario">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <StackPanel Margin="30"
+                    Spacing="15">
+
+            <TextBlock Text="Crear usuario"
+                       FontSize="24"
+                       FontWeight="Bold"/>
+
+            <TextBlock Text="Código del usuario"/>
+
+            <TextBox Text="{Binding Codigo}"
+                     IsReadOnly="True"/>
+
+            <TextBlock Text="Nombre del usuario"/>
+
+            <TextBox Text="{Binding NombreUsuario}"/>
+
+            <TextBlock Text="Contraseña"/>
+
+            <TextBox Text="{Binding Contrasena}"
+                     PasswordChar="●"/>
+
+            <TextBlock Text="Confirmar contraseña"/>
+
+            <TextBox Text="{Binding ConfirmacionContrasena}"
+                     PasswordChar="●"/>
+
+            <TextBlock Text="Rol"/>
+
+            <ComboBox SelectedItem="{Binding RolSeleccionado}">
+                <ComboBoxItem Content="Administrador"/>
+                <ComboBoxItem Content="Vendedor"/>
+                <ComboBoxItem Content="Supervisor"/>
+            </ComboBox>
+
+            <TextBlock Text="Permisos"
+                       FontWeight="Bold"
+                       Margin="0,10,0,0"/>
+
+            <ItemsControl ItemsSource="{Binding Permisos}">
+
+                <ItemsControl.ItemTemplate>
+
+                    <DataTemplate x:DataType="models:PermisoSeleccionItem">
+
+                        <CheckBox Content="{Binding Nombre}"
+                                  IsChecked="{Binding Seleccionado}"/>
+
+                    </DataTemplate>
+
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+
+            <TextBlock Text="{Binding Mensaje}"
+                       TextWrapping="Wrap"
+                       Margin="0,10,0,0"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="10"
+                        Margin="0,20,0,0">
+
+                <Button Content="Guardar"
+                        Width="100"
+                        Command="{Binding GuardarUsuarioCommand}"/>
+
+                <Button Content="Limpiar"
+                        Width="100"
+                        Command="{Binding LimpiarFormularioCommand}"/>
+
+                <Button Content="Cancelar"
+                        Width="100"
+                        Command="{Binding CancelarCommand}"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Window>

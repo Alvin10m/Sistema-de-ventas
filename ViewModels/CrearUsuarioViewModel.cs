@@ -17,6 +17,14 @@ namespace SistemaVentas.ViewModels
         {
             usuarioService = new UsuarioService();
             Codigo = usuarioService.GenerarCodigoUsuario();
+
+            var permisosDisponibles =
+                usuarioService.ObtenerPermisos();
+
+            foreach (var permiso in permisosDisponibles)
+            {
+                Permisos.Add(permiso);
+            }
         }
 
         // Código generado automáticamente.
@@ -49,6 +57,9 @@ namespace SistemaVentas.ViewModels
 
         // Permisos disponibles para seleccionar.
         public ObservableCollection<PermisoSeleccionItem> Permisos { get; } = new();
+
+        // Solicitar el cierre de la ventana Crear usuario
+        public event Action? SolicitarCerrar;
 
         // Guardar un nuevo usuario.
         [RelayCommand]
@@ -112,6 +123,13 @@ namespace SistemaVentas.ViewModels
             {
                 permiso.Seleccionado = false;
             }
+        }
+
+        // Cancelar la creación del usuario y cerrar la ventana
+        [RelayCommand]
+        private void Cancelar()
+        {
+            SolicitarCerrar?.Invoke();
         }
     }
 }
